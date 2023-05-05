@@ -4,7 +4,7 @@ export default function useArticles() {
 
     // Define a function to list all articles
     const listArticles = async () => {
-        return await queryContent<ArticleChunk>("/blog").only(['tags', 'title', 'description', '_path']).find() 
+        return await queryContent<ArticleChunk[]>("/blog").only(['tags', 'title', 'description', '_path']).find() 
     };
     
     const summaryArticles = async () => {

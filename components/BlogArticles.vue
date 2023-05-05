@@ -5,6 +5,7 @@
       <TransitionGroup name="list" tag="ul" class="flex flex-wrap gap-8">
         <BlogCard
           v-for="article in articles"
+          :key="article.title"
           :title="article.title"
           :description="article.description"
           :tags="article.tags"
@@ -46,7 +47,7 @@ const { listArticles } = useContent();
 const articles = ref<ArticleChunk[]>([]);
 
 onMounted(async () => {
-  articles.value = (await listArticles()) as [];
+  articles.value = await listArticles();
 });
 </script>
 

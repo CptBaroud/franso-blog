@@ -6,24 +6,25 @@
           Find <br /><span>my articles</span>
         </h1>
       </div>
-    </section>
-    <section class="articles">
-      <div class="container">
-        <div v-for="item in data">
-          <BlogCard
-            :title="item.title"
-            :description="item.description"
-            :tags="item.tags"
-            :path="item._path"
-          />
+      <BlobDecoration class="max-w-[1200px]" :small="6" :large="0" :medium="3">
+        <div class="flex flex-row flex-wrap gap-8 max-w-[1200px]">
+          <div class="max-w-[48%] z-10" v-for="item in data" :key="item.title">
+            <BlogCard
+              :title="item.title"
+              :description="item.description"
+              :tags="item.tags"
+              :path="item._path"
+            />
+          </div>
         </div>
-      </div>
+      </BlobDecoration>
     </section>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import BlogCard from "@/components/BlogCard.vue";
+import BlobDecoration from "@/components/BlobDecoration.vue";
 
 const isDark = useTheme();
 
@@ -31,16 +32,20 @@ const { data } = await useAsyncData("home", () =>
   queryContent("/blog").only(["tags", "title", "description", "_path"]).find()
 );
 
-console.log(data);
+const blobs = useBlob(24, 6);
 </script>
 
 <style lang="scss">
+.bgDecoration {
+  @apply absolute z-0;
+}
+
 .container {
   @apply flex flex-row relative gap-32 items-center justify-center max-w-[1200px] z-10;
 }
 
 .hero {
-  @apply flex flex-row justify-center items-center pb-64 pt-24;
+  @apply flex flex-col justify-center items-center gap-48 py-32 bg-light-full dark:bg-dark-full;
 
   .container {
     @apply justify-start;
@@ -56,14 +61,6 @@ console.log(data);
   line-height: 100%;
   span {
     @apply text-purple-900 dark:text-purple-500;
-  }
-}
-
-.articles {
-  @apply relative;
-
-  &::before {
-    content: "";
   }
 }
 </style>

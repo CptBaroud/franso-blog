@@ -22,8 +22,12 @@ module.exports = {
       backgroundImage: (theme) => ({
         "light-start": "linear-gradient(180deg, #ffffff 0%, #f1f1f1 100%)",
         "light-end": "linear-gradient(180deg, #f1f1f1 0%, #ffffff 100%)",
+        "light-full":
+          "linear-gradient(180deg, #ffffff 0%, #f1f1f1 40%, #f1f1f1 60%, #ffffff 100%)",
         "dark-start": "linear-gradient(180deg, #000000 0%, #1a1a1a 100%)",
         "dark-end": "linear-gradient(180deg, #1a1a1a 0%, #000000 100%)",
+        "dark-full":
+          "linear-gradient(180deg, #000000 0%, #1a1a1a 40%, #1a1a1a 60%, #000000 100%)",
       }),
     },
     fontSize: {

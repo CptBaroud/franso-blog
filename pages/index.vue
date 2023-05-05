@@ -23,13 +23,17 @@
         />
       </div>
       <span class="decoration unselectable">
-        <p class="text-wrapper" v-for="lign in textDecoration">
+        <p
+          class="text-wrapper"
+          v-for="(lign, i) in textDecoration"
+          :key="`lign-${i}`"
+        >
           <span
             class="text-animation"
             :style="{
               '--typing-duration':
                 Math.floor(Math.random() * 3000) + 2500 + 'ms',
-              '--start-position': Math.floor(Math.random() * 65) + 10 + '%',
+              '--start-position': Math.floor(Math.random() * 50) + 20 + '%',
             }"
           >
             {{ lign }}
@@ -43,7 +47,6 @@
 </template>
 
 <script setup lang="ts">
-import BlogArticles from "@/components/BlogArticles.vue";
 import { ElementProps } from "~~/interfaces/interfaces";
 
 const heroSection: Ref<ElementProps | null> = ref(null);
@@ -56,7 +59,7 @@ const textDecoration = computed(() => {
   let temp: string[] = [];
 
   if (HEIGHT && WIDTH) {
-    const steps = HEIGHT / 86;
+    const steps = HEIGHT / 96;
     for (let i = 0; i <= steps; i++) {
       const length = Math.floor(WIDTH / 52) - Math.floor(Math.random() * 10); //the length of the string we generate
       let str = "";
@@ -113,7 +116,7 @@ const textDecoration = computed(() => {
 }
 
 .hero-section {
-  @apply flex flex-row relative justify-center pt-36 pb-28
+  @apply flex flex-row relative justify-center py-16
     bg-light-start dark:bg-dark-start z-20;
 
   .hero-wrapper {
@@ -140,7 +143,7 @@ const textDecoration = computed(() => {
 
   .decoration {
     @apply text-[5rem] font-Inconsolata font-black text-black/25 dark:text-white/25
-     absolute left-0 right-0 top-0 opacity-20 z-0;
+     absolute left-0 right-0 top-0 opacity-[10%] dark:opacity-5 z-0;
     line-height: 100%;
 
     .text-wrapper {

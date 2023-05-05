@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="container">
+    <div class="container bg">
       <NuxtLink
         to="/blog"
         class="text-xl font-black hover:text-black/75 hover:underline underline-offset-4"
@@ -8,7 +8,7 @@
       >
       <div class="flex flex-row gap-4">
         <div class="px-2 w-full">
-          <ul v-for="link in summary">
+          <ul v-for="link in summary" :key="link.title">
             <NuxtLink
               class="link"
               :to="link._path"
@@ -24,7 +24,7 @@
           <ContentDoc />
         </div>
         <div class="px-2 w-full">
-          <Summary></Summary>
+          <Summary />
         </div>
       </div>
     </div>
@@ -49,6 +49,12 @@ onMounted(async () => {
 .container {
   @apply max-w-[1200px] flex flex-col items-start gap-2;
 }
+
+.bg {
+  @apply bg-light/50 dark:bg-dark/50 p-4 rounded-lg;
+  backdrop-filter: blur(9px);
+}
+
 a,
 .link {
   @apply px-1;

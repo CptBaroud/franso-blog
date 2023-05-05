@@ -44,7 +44,7 @@ const props = defineProps<IBlogCard>();
 <style scoped lang="scss">
 .blogCard {
   @apply flex gap-4 rounded-2xl shadow-md p-4 z-10
-    bg-light/50 dark:bg-dark/25 backdrop-blur font-Inconsolata;
+    bg-light/50 dark:bg-dark/50 backdrop-blur font-Inconsolata;
   backdrop-filter: blur(9px);
   flex: 0 0 48%;
   box-sizing: border-box;

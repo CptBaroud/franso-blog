@@ -223,14 +223,18 @@ For more insight on this attack, refer to [the writeup of the web challenge "BNV
 
 ## Resources
 
-{% embed url="https://medium.com/hmif-itb/googlectf-2019-web-bnv-writeup-nicholas-rianto-putra-medium-b8e2d86d78b2" %}
+::embedUrl{url="https://medium.com/hmif-itb/googlectf-2019-web-bnv-writeup-nicholas-rianto-putra-medium-b8e2d86d78b2"}
+[GoogleCTF 2019] — Web: BNV — Writeup
+::
 
-{% embed url="https://book.hacktricks.xyz/pentesting-web/xxe-xee-xml-external-entity#content-type-from-json-to-xee" %}
+::embedUrl{url="https://medium.com/hmif-itb/googlectf-2019-web-bnv-writeup-nicholas-rianto-putra-medium-b8e2d86d78b2"}
 Content-Type from JSON to XEE
-{% endembed %}
+::
 
-{% embed url="https://book.hacktricks.xyz/pentesting-web/xxe-xee-xml-external-entity#waf-and-protections-bypasses" %}
+::embedUrl{url="https://book.hacktricks.xyz/pentesting-web/xxe-xee-xml-external-entity#waf-and-protections-bypasses"}
 WAF and protections bypasses
-{% endembed %}
+::
 
-{% embed url="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type" %}
+::embedUrl{url="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type"}
+Content-Type - HTTP | MDN
+::

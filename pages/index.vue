@@ -2,26 +2,6 @@
 <template>
   <div>
     <section class="hero-section" ref="heroSection">
-      <div class="container">
-        <div class="hero-wrapper">
-          <div class="title-wrapper">
-            <h1 class="title" :class="{ dark: isDark }">
-              {{ "<" }}Hi,I'm <br />
-              <span class="text-purple-900 dark:text-purple-300">Franso</span
-              >{{ "/>" }}
-            </h1>
-          </div>
-          <p class="text-2xl text-gray-900 dark:text-white">
-            Cybersecurity engineer and pentester enthusiast
-          </p>
-        </div>
-        <img
-          :src="
-            useAsset(`images/hero-artwork-${$colorMode.preference}` + '.png')
-          "
-          class="hero-art"
-        />
-      </div>
       <span class="decoration unselectable">
         <p
           class="text-wrapper"
@@ -40,6 +20,26 @@
           </span>
         </p>
       </span>
+      <div class="container">
+        <div class="hero-wrapper">
+          <div class="title-wrapper">
+            <h1 class="title" :class="{ dark: isDark }">
+              {{ "<" }}Hi,I'm <br />
+              <span class="text-purple-900 dark:text-purple-300">Franso</span
+              >{{ "/>" }}
+            </h1>
+          </div>
+          <p class="lg:text-2xl text-xl text-gray-900 dark:text-white">
+            Cybersecurity engineer and pentester enthusiast
+          </p>
+        </div>
+        <img
+          :src="
+            useAsset(`images/hero-artwork-${$colorMode.preference}` + '.png')
+          "
+          class="hero-art"
+        />
+      </div>
     </section>
 
     <BlogArticles :is-home-page="true" />
@@ -104,7 +104,10 @@ const textDecoration = computed(() => {
 }
 
 .container {
-  @apply flex flex-row relative gap-32 items-center justify-around max-w-[1200px] z-10;
+  @apply flex 
+    md:flex-row relative lg:gap-32 
+    flex-col-reverse gap-8
+    items-center justify-around max-w-[1200px] z-10;
 }
 
 .unselectable {
@@ -116,7 +119,7 @@ const textDecoration = computed(() => {
 }
 
 .hero-section {
-  @apply flex flex-row relative justify-center py-16
+  @apply flex flex-col relative justify-center py-16 pt-48
     bg-light-start dark:bg-dark-start z-20;
 
   .hero-wrapper {
@@ -125,7 +128,8 @@ const textDecoration = computed(() => {
     .title {
       @apply bg-transparent relative
          dark:text-white text-gray-900
-         text-[5.375rem] font-extrabold font-Inconsolata uppercase;
+         lg:text-[5.375rem] text-[3.75rem] 
+         font-extrabold font-Inconsolata uppercase;
       line-height: 100%;
       //letter-spacing: 0%;
       text-shadow: 0px 0px 142px rgba(0, 0, 0, 0.33), 0px 0px 142px #9747ff;
@@ -136,14 +140,14 @@ const textDecoration = computed(() => {
     }
 
     .title-wrapper {
-      @apply relative dark:text-white text-gray-900
-      text-[5.375rem] font-extrabold font-Inconsolata;
+      @apply relative;
     }
   }
 
   .decoration {
-    @apply text-[5rem] font-Inconsolata font-black text-black/25 dark:text-white/25
-     absolute left-0 right-0 top-0 opacity-[10%] dark:opacity-5 z-0;
+    @apply text-[5rem] font-Inconsolata 
+      font-black text-black/25 dark:text-white/25
+      absolute left-0 right-0 top-0 opacity-[10%] dark:opacity-5 z-0 overflow-hidden;
     line-height: 100%;
 
     .text-wrapper {
@@ -160,7 +164,7 @@ const textDecoration = computed(() => {
   }
 
   .hero-art {
-    @apply z-10 max-w-[750px];
+    @apply z-10 md:max-w-[55%] max-w-full;
   }
 }
 </style>

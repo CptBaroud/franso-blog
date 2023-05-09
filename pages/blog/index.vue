@@ -1,38 +1,23 @@
 <template>
-  <div>
-    <section class="hero">
-      <div class="container">
-        <h1 class="title" :class="{ dark: isDark }">
-          Find <br /><span>my articles</span>
-        </h1>
-      </div>
-      <BlobDecoration class="max-w-[1200px]" :small="6" :large="0" :medium="3">
-        <div class="flex flex-row flex-wrap gap-8 max-w-[1200px]">
-          <div class="max-w-[48%] z-10" v-for="item in data" :key="item.title">
-            <BlogCard
-              :title="item.title"
-              :description="item.description"
-              :tags="item.tags"
-              :path="item._path"
-            />
-          </div>
-        </div>
-      </BlobDecoration>
-    </section>
-  </div>
+  <section class="hero">
+    <div class="container pt-32">
+      <h1 class="title" :class="{ dark: isDark }">
+        Find <br /><span>my articles</span>
+      </h1>
+    </div>
+    <BlobDecoration :small="4" :large="0" :medium="1">
+      <BlogArticles class="bg-none" :is-home-page="false" />
+    </BlobDecoration>
+  </section>
 </template>
 
 <script setup lang="ts">
-import BlogCard from "@/components/BlogCard.vue";
+// @ts-ignore
 import BlobDecoration from "@/components/BlobDecoration.vue";
+// @ts-ignore
+import BlogArticles from "~~/components/BlogArticles.vue";
 
 const isDark = useTheme();
-
-const { data } = await useAsyncData("home", () =>
-  queryContent("/blog").only(["tags", "title", "description", "_path"]).find()
-);
-
-const blobs = useBlob(24, 6);
 </script>
 
 <style lang="scss">
@@ -45,7 +30,7 @@ const blobs = useBlob(24, 6);
 }
 
 .hero {
-  @apply flex flex-col justify-center items-center gap-48 py-32 bg-light-full dark:bg-dark-full;
+  @apply flex flex-col justify-center items-center gap-48 py-48 bg-light-full dark:bg-dark-full;
 
   .container {
     @apply justify-start;

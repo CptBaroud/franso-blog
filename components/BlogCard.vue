@@ -46,7 +46,10 @@ const props = defineProps<IBlogCard>();
   @apply flex gap-4 rounded-2xl shadow-md p-4 z-10
     bg-light/50 dark:bg-dark/50 backdrop-blur font-Inconsolata;
   backdrop-filter: blur(9px);
-  flex: 0 0 48%;
+  flex: 0 0 46%;
+  @media (max-width: 768px) {
+    flex: 0 0 100%;
+  }
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
 

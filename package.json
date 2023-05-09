@@ -29,6 +29,7 @@
   "dependencies": {
     "@nuxtjs/color-mode": "^3.2.0",
     "@pinia/nuxt": "^0.4.7",
+    "@stdlib/random-base-uniform": "^0.0.6",
     "pinia": "^2.0.33",
     "vite-svg-loader": "^4.0.0"
   }

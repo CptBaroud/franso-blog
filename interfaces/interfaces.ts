@@ -19,3 +19,27 @@ export interface ElementProps {
     offsetHeight: number;
   }
   
+  export interface children {
+    type: string,
+    tag: string,
+    children: [
+        {
+            type: string,
+            value: string
+        }
+    ]
+    props: {
+        id: string
+    }
+}
+
+export interface navLink {
+    text: string,
+    id: string,
+}
+
+export interface navLinks {
+    text: string,
+    id: string,
+    linkedLinks: navLink[]
+}

@@ -13,12 +13,6 @@ export default defineNuxtConfig({
         'tailwindcss/nesting': 'postcss-nesting'
       },
     },
-     build: {
-    rollupOptions: {
-      entryFileNames: '[name].js',
-      chunkFileNames: '[name].js'
-    }
-  }
     head() {
       return {
         meta: [

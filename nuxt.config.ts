@@ -3,6 +3,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    target: 'static',
     modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt',  "@nuxtjs/color-mode", '@nuxt/content'],
     postcss: {
       plugins: {

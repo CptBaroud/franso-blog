@@ -33,12 +33,7 @@
             Cybersecurity engineer and pentester enthusiast
           </p>
         </div>
-        <img
-          :src="
-            useAsset(`images/hero-artwork-${$colorMode.preference}` + '.png')
-          "
-          class="hero-art"
-        />
+        <img :src="heroImgUrl" class="hero-art" />
       </div>
     </section>
 
@@ -52,6 +47,12 @@ import { ElementProps } from "~~/interfaces/interfaces";
 const heroSection: Ref<ElementProps | null> = ref(null);
 
 const isDark = useTheme();
+const colorMode = useColorMode();
+
+const heroImgUrl = new URL(
+  `../assets/images/hero-artwork-${colorMode.preference}.png`,
+  import.meta.url
+).href;
 
 const textDecoration = computed(() => {
   const HEIGHT = heroSection.value?.offsetHeight;

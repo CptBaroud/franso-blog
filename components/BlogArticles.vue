@@ -62,7 +62,7 @@ onMounted(async () => {
 }
 
 .blog-section {
-  @apply relative flex flex-col justify-center items-center py-[11rem]
+  @apply relative flex flex-col justify-center items-center py-4 xl:py-[11rem]
      z-10;
   &.bg {
     @apply bg-light-end dark:bg-dark-end;

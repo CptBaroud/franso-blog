@@ -68,7 +68,7 @@ const props = defineProps<IBlogCard>();
 }
 
 .blogCard-title {
-  @apply text-4xl font-bold text-gray-900 dark:text-white;
+  @apply text-2xl xl:text-4xl font-bold text-gray-900 dark:text-white;
   line-height: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -99,7 +99,7 @@ const props = defineProps<IBlogCard>();
 }
 
 .blogCard-description {
-  @apply text-base text-gray-900 dark:text-white;
+  @apply text-base text-gray-900/75 dark:text-white/75;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

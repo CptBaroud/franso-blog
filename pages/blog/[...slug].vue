@@ -93,7 +93,7 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 section {
-  @apply flex-col items-start 2xl:items-center gap-4;
+  @apply flex-col items-start 2xl:items-center gap-4 pt-32 xl:pt-64;
 }
 
 .show-mobile {

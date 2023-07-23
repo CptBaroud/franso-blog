@@ -30,10 +30,10 @@
             </h1>
           </div>
           <p class="lg:text-2xl text-xl text-gray-900 dark:text-white">
-            Cybersecurity engineer and pentester enthusiast
+            Cybersecurity engineer, pentester and CTF enthusiast
           </p>
         </div>
-        <img :src="heroImgUrl" class="hero-art" />
+        <img src="~/assets/images/hero-artwork-dark.png" class="hero-art" />
       </div>
     </section>
 
@@ -49,10 +49,7 @@ const heroSection: Ref<ElementProps | null> = ref(null);
 const isDark = useTheme();
 const colorMode = useColorMode();
 
-const heroImgUrl = new URL(
-  `../assets/images/hero-artwork-${colorMode.preference}.png`,
-  import.meta.url
-).href;
+const heroImgUrl = `~/assets/images/hero-artwork-dark.png`;
 
 const textDecoration = computed(() => {
   const HEIGHT = heroSection.value?.offsetHeight;
@@ -105,23 +102,12 @@ const textDecoration = computed(() => {
 }
 
 .container {
-  @apply flex 
-    md:flex-row relative lg:gap-32 
-    flex-col-reverse gap-8
-    items-center justify-around max-w-[1200px] z-10;
-}
-
-.unselectable {
-  // Text non selectionable
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
+  @apply md:flex-row flex-col-reverse gap-8;
 }
 
 .hero-section {
-  @apply flex flex-col relative justify-center py-16 pt-48
-    bg-light-start dark:bg-dark-start z-20;
+  @apply flex flex-col relative justify-center py-16 pt-24
+   z-20;
 
   .hero-wrapper {
     @apply flex font-Inconsolata flex-col gap-4;

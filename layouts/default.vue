@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-hidden app">
     <SiteHeader />
-    <div>
+    <div class="h-full">
       <NuxtPage />
     </div>
     <SiteFooter />
@@ -20,7 +20,7 @@ useHead({
 
 <style scoped>
 .app {
-  @apply bg-light dark:bg-dark;
+  @apply min-h-[100vh] bg-light dark:bg-dark flex flex-col justify-between;
   background-image: url("~/assets/images/bg-index.png");
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-light/75 dark:bg-dark/75 rounded-t-3xl backdrop-blur-3xl">
+  <footer class="flex w-full justify-center">
     <section class="footer-section">
       <h4 class="text-xl text-black dark:text-white font-bold my-0">
         All rights belong to
@@ -17,6 +17,10 @@
 
 <style lang="scss">
 .footer-section {
-  @apply relative flex flex-col justify-center items-center py-16;
+  @apply relative font-Inconsolata flex flex-col justify-center items-center py-16 max-w-[1200px] bg-light/75 dark:bg-dark/75 rounded-t-3xl;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-sizing: border-box;
 }
 </style>

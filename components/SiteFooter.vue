@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="bg-light/75 dark:bg-dark/75 rounded-t-3xl backdrop-blur-3xl">
     <section class="footer-section">
       <h4 class="text-xl text-black dark:text-white font-bold my-0">
         All rights belong to
@@ -17,6 +17,6 @@
 
 <style lang="scss">
 .footer-section {
-  @apply relative flex flex-col justify-center items-center;
+  @apply relative flex flex-col justify-center items-center py-16;
 }
 </style>

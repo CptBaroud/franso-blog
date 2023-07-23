@@ -46,12 +46,15 @@ function setTheme() {
 
 <style lang="scss" scoped>
 .header {
-  @apply bg-transparent flex justify-center font-Inconsolata fixed z-50 py-4;
+  @apply bg-transparent flex justify-center font-Inconsolata z-50 py-16 px-8;
 }
 
 .header-nav {
-  @apply bg-white/50 dark:bg-black/50 rounded-lg flex flex-row items-center justify-between max-w-[1200px] w-full px-6 py-2;
-  backdrop-filter: blur(9px);
+  @apply bg-white/75 dark:bg-dark/75 rounded-lg flex flex-row items-center justify-between max-w-[1200px] w-full py-2 px-8;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-sizing: border-box;
 }
 
 .nav-item {

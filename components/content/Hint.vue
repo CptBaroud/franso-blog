@@ -35,8 +35,11 @@ const iconName = computed(() => {
 
 <style lang="scss" scoped>
 .alert {
-  @apply flex flex-row items-start gap-4 px-2 py-2 rounded-md my-8 h-full border-l-8 shadow;
-  backdrop-filter: blur(9px);
+  @apply flex flex-row items-start gap-4 px-2 py-2 rounded-md my-8 border-l-8 shadow;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-sizing: border-box;
 
   &.info {
     @apply border-blue-600 bg-blue-50/50 dark:bg-blue-900/20;

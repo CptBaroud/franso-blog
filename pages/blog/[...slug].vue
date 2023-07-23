@@ -1,14 +1,14 @@
 <template>
-  <section class="bg-light-full dark:bg-dark-full">
-    <div class="w-full flex 2xl:hidden">
-      <NuxtLink
-        to="/blog"
-        class="text-xl font-black hover:text-black/75 hover:dark:text-white/75 hover:underline underline-offset-4 pb-4"
-        >{{ "<" }} Back</NuxtLink
-      >
-    </div>
-    <div class="container">
-      <div class="nav-left hidden 2xl:flex px-2 h-full">
+  <section>
+    <div class="container bg">
+      <div class="w-full">
+        <NuxtLink
+          to="/blog"
+          class="text-xl font-black hover:text-black/75 hover:dark:text-white/75 hover:underline underline-offset-4 pb-4"
+          >{{ "<" }} Back</NuxtLink
+        >
+      </div>
+      <!-- <div class="nav-left hidden lg:flex px-2 h-full">
         <div class="mt-8">
           <div class="flex w-48 flex-col">
             <NuxtLink
@@ -29,9 +29,9 @@
             </li>
           </div>
         </div>
-      </div>
+      </div> -->
       <ContentDoc class="content" />
-      <div class="nav-right hidden lg:flex flex-col px-2 h-full">
+      <!-- <div class="nav-right hidden lg:flex flex-col px-2 h-full">
         <div class="fixed mt-8">
           <div class="flex w-48 flex-col">
             <ul class="nav">
@@ -65,7 +65,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 </template>
@@ -93,7 +93,7 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 section {
-  @apply flex-col items-start 2xl:items-center gap-4 pt-32 xl:pt-64;
+  @apply flex-col items-start 2xl:items-center gap-4 pt-16;
 }
 
 .show-mobile {
@@ -102,20 +102,15 @@ section {
   }
 }
 .container {
-  @apply max-w-[1200px] flex flex-col 2xl:flex-row items-start justify-center gap-8;
+  @apply max-w-[1000px] pt-0 flex-col items-start gap-4;
 }
 
 .bg {
-  @apply bg-light/50 dark:bg-dark/50 rounded-lg;
-  backdrop-filter: blur(9px);
-}
-
-a,
-.link {
-  @apply px-1;
-  &.exact {
-    @apply font-bold border-l-2 border-purple-900 border-spacing-2 text-purple-900 dark:text-purple-500;
-  }
+  @apply bg-light/75 dark:bg-dark/75 rounded-2xl p-8 py-8;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-sizing: border-box;
 }
 
 .nav {

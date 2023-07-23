@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-hidden">
+  <div class="overflow-hidden app">
     <SiteHeader />
     <div>
       <NuxtPage />
@@ -17,3 +17,10 @@ useHead({
   title: "Franso blog",
 });
 </script>
+
+<style scoped>
+.app {
+  @apply bg-light dark:bg-dark;
+  background-image: url("~/assets/images/bg-index.png");
+}
+</style>

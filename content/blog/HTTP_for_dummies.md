@@ -1,6 +1,6 @@
 ---
-tags: ['Vulgarization', 'Web', 'Pentest']
-description: "I was originally going to make a blog post about request smuggling, a vulnerability related to HTTP, but putting together the explanation of the protocol and the explanation of the vulnerability in one post is too long."
+tags: ['HTTP', 'Vulgarization', 'Web', 'Pentest']
+description: "Let me vulgarize one of the most famous protocol, HTTP"
 ---
 
 # HTTP for dummies

@@ -1,17 +1,15 @@
 ---
 tags: ['XSS', 'Vulgarization', 'Web', 'Pentest']
-description: "Today, we're going to take a look at the origin of one of the most common and exploited vulnerability on the Internet: The XSS also known as cross site scripting. If you are not familiar with web security, don't worry, I'll explain everything ! **Let's get going !**"
+description: "Let me vulgarize one of the most seen web vulnerability, Cross Site Scripting also known as XSS"
 ---
 
 # XSS for dummies
 
-Today, we're going to take a look at the origin of one of the most common and exploited vulnerability on the Internet: The **XSS** also known as **cross site scripting**. If you are **not familiar** with web security, don't worry, I'll explain everything ! **Let's get going !**
+Today, we're going to take a look at the origin of one of the most common and exploited vulnerability on the Internet: The**XSS**also known as **cross site scripting**. If you are **not familiar** with web security, don't worry, I'll explain everything ! **Let's get going !**
 
-## Introduction
+## How the web works
 
-### How the web works
-
-But before we explain what an `XSS` is, we need to understand how a web page works to get the basics right.
+But before we explain what an `XSS` is, we need to understand how a web page works to get the basics.
 
 ::hint{type="info"}
 A **web page** is a **collection of files**, such as *HTML, CSS and JavaScript*, which are *downloaded* to a web `browser` and displayed as web pages. Here's how it works: 
@@ -24,23 +22,30 @@ A **web page** is a **collection of files**, such as *HTML, CSS and JavaScript*,
 
 5. The `browser` displays the web page to the user. The user **can interact with the page by clicking on links, filling in forms, using buttons and menus, etc**.
 6. If the user performs actions that require additional requests to the server (e.g., submitting a form), the `browser` sends new HTTP requests and the cycle starts again.
+
+<img src="../../assets/images/xss/how_web_work.png" alt="How_Does_The_Web_Works" data-size="original">
 ::
 
-### Javascript and global XSS definition
+## Javascript and global XSS definition
 
 In this introduction, I talked about **javascript**, a web language for adding dynamic functionality to a page. This is where our XSS attack comes in. To give a general definition :
 ::hint{type="info"}
 **Cross-Site Scripting is an attack that allows an attacker to inject malicious code into a web page (usually javascript).**
 ::
 
-This code is then **executed by the browser of users visiting the page**. This can enable the attacker to `steal confidential information`, such as passwords, session cookies or even banking data. More on the impact of this later.
+The malicious code is then **executed by the browser of the users visiting the page**. This can enable the attacker to `steal confidential information` such as passwords, session cookies or even banking data. More on the [impact later](XSS_for_dummies.md#impacts).
+
+<img src="../../assets/images/xss/XSS_WHATIS.gif" alt="gif_what_is" data-size="original">
 
 XSS works on the principle of injection: **an attacker provides an untrusted input to a program, which then executes it, inducing a malicious action**.
-Injections are a common attack vector in cybersecurity, always top 3 in the OWASP top 10 (a standard awareness document for developers and Web application security), and that includes many injections.
+Injections are a common attack vector in cybersecurity, always top 3 in the OWASP top 10 (a standard awareness document for developers and Web application security).
 
 There are **3 types of XSS**:
-
-**Stored XSS**, **Reflected XSS** and **DOM-based XSS**. We'll review type, let's go !
+1. **Stored XSS**, 
+2. **Reflected XSS**, 
+3. **DOM-based XSS** 
+   
+We'll review type, let's go !
 
 ## Stored XSS
 

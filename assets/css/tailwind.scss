@@ -2,8 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  a {
+    @apply relative;
+
+    &::after {
+      @apply bg-red-500 absolute w-32 h-8;
+    }
+  }
+
   body {
     @apply bg-white dark:bg-black font-Inter;
   }
@@ -16,13 +27,17 @@
     @apply flex flex-row items-center justify-center w-full 
     text-black/95 dark:text-white/95 xl:px-32 lg:px-24 md:px-12 px-8 py-16 pt-48;
   }
-  
+
   img {
-    @apply mx-auto py-4 w-full h-auto dark:bg-light/30 bg-dark/75;  
+    @apply mx-auto my-8 w-full h-auto rounded-2xl;
+  }
+
+  img[src$=".gif"] {
+    @apply mx-auto my-12 w-full h-auto dark:bg-light/50 bg-dark/50 rounded-2xl;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    box-sizing: border-box; /* This centers the image horizontally */
+    box-sizing: border-box;
   }
 
   h1,
@@ -51,10 +66,22 @@
     @apply lg:text-[1.05rem] text-base py-2;
   }
 
-  code {
-    @apply bg-gray-100/80 dark:bg-dark/80 text-[1.15rem] rounded-lg font-Inconsolata font-semibold text-dark dark:text-white inline-block px-2;
-    backdrop-filter: blur(20px);
+  pre {
+    @apply my-4;
+    code {
+      @apply py-4 px-8 w-full border-2 dark:border-light/25 border-dark/25;
+    }
   }
+
+  code {
+    @apply bg-light/80 dark:bg-dark/80 rounded-2xl
+        text-[1.15rem] font-Inconsolata text-dark dark:text-white 
+        inline-block px-2;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-sizing: border-box;
+  }
+
   ul,
   ol {
     @apply my-4;
@@ -83,6 +110,10 @@
   details {
     @apply inline-block border-4 border-spacing-4 border-dashed border-dark/75 dark:border-white/75 px-4 py-4 w-full my-4 rounded-lg;
 
+    img {
+      @apply my-2;
+    }
+
     &:hover {
       @apply border-violet-600 cursor-pointer;
 
@@ -96,7 +127,7 @@
     }
 
     .summary {
-      @apply text-xl;
+      @apply text-base lg:text-xl;
     }
   }
 }

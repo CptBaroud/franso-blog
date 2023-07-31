@@ -56,7 +56,7 @@ If the site  **doesn't have sufficient protection against stored XSS attacks**, 
 ::hint{type="warning"}
 When other users access the article page and read the comments, their browser automatically executes the malicious script without them noticing.
 ::
-<img src="../../images/XSS/XSS_Stockee.gif" alt="Stored_XSS" data-size="original">
+<img loading="lazy" width="920" height="510" src="../../images/XSS/XSS_Stockee.gif" alt="Stored_XSS" data-size="original" >
 
 ::hint{type="info"}
 **Stored XSS is self-explanatory in that the malicious script is stored on the server.**
@@ -82,7 +82,7 @@ If the site doesn't have sufficient protection against reflected XSS attacks, an
 ::
 When you open the results page, your browser automatically executes the malicious script without you being aware of it.
 
-<img src="../../images/XSS/XSS_Reflected.gif" alt="Stored_XSS" data-size="original">
+<img loading="lazy" width="920" height="510" src="../../images/XSS/XSS_Reflected.gif" alt="Stored_XSS" data-size="original">
 
 ::hint{type="info"}
 **This is the most common XSS vulnerability. It occurs when an attacker inserts malicious code (JS) into an HTTP request, which is then returned in the web page response.**
@@ -110,7 +110,7 @@ The Document Object Model (DOM) is an in-memory representation of a web page tha
 
 Simply put, the DOM is a hierarchy of objects that represent HTML elements (e.g.`<p>, <div>, <img>` tags, etc.) and **can be manipulated using methods and JavaScript properties.**
 
-<img src="../../images/XSS/DOM-tree.png" alt="Stored_XSS" data-size="original">
+<img loading="lazy" width="920" height="510" src="../../images/XSS/DOM-tree.png" alt="Stored_XSS" data-size="original">
 
 Normally with this sentence you should start to understand where the vulnerability comes from.
 
@@ -138,7 +138,7 @@ A pop-up is then displayed on the browser of the victim who will have carelessly
 Unlike Stored and Reflected XSS, DOM-Based XSS does not require server interaction to function, making it particularly difficult to detect and prevent.
 ::
 
-<img src="../../images/XSS/XSS_DOM.gif" alt="Stored_XSS" data-size="original">
+<img loading="lazy" width="920" height="510" src="../../images/XSS/XSS_DOM.gif" alt="Stored_XSS" data-size="original">
 
 <details>
 <summary class="summary">DOM Based XSS attack example</summary>
@@ -191,7 +191,7 @@ The actual impact of an XSS attack depends on the nature of the application, its
     ```default-src 'self'; script-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none';```<br />
 
     This policy specifies that resources like images and scripts can only be loaded from the same origin as the main page. Therefore, even if a hacker manages to inject an XSS payload, they can only load resources from the current origin. This significantly reduces the chances of an attacker exploiting the XSS vulnerability.
-<img src="../../images/XSS/CSP.gif" alt="Stored_XSS" data-size="original">
+<img loading="lazy" width="920" height="510" src="../../images/XSS/CSP.gif" alt="Stored_XSS" data-size="original">
 
 
 ## Resources

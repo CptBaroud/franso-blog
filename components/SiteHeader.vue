@@ -46,7 +46,7 @@ function setTheme() {
 
 <style lang="scss" scoped>
 .header {
-  @apply bg-transparent flex justify-center font-Inconsolata z-50 py-16 px-8;
+  @apply bg-transparent flex justify-center font-Inconsolata z-50 py-16 px-0 md:px-8;
 }
 
 .header-nav {

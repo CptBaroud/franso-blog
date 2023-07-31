@@ -42,7 +42,7 @@ const props = defineProps<IBlogCard>();
   @apply flex gap-4 relative w-full max-w-full lg:max-w-[48%] justify-between rounded-2xl shadow-md p-4 z-20
     bg-light/75 dark:bg-dark/75 font-Inter border border-light/95 dark:border-dark/95;
 
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-sizing: border-box;

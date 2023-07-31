@@ -3,7 +3,6 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    target: 'static',
     modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt',  "@nuxtjs/color-mode", '@nuxt/content'],
     postcss: {
       plugins: {
@@ -13,9 +12,11 @@ export default defineNuxtConfig({
         'tailwindcss/nesting': 'postcss-nesting'
       },
     },
-    head() {
-      return {
-        meta: [
+    app: {
+      head: {
+        title: 'Franso Blog',
+        titleTemplate: "%s | Franso",
+        link: [
           { rel: "preconnect", href: "https://fonts.googleapis.com" },
           {
             rel: "stylesheet",

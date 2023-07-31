@@ -57,7 +57,7 @@ const textDecoration = computed(() => {
   let temp: string[] = [];
 
   if (HEIGHT && WIDTH) {
-    const steps = HEIGHT / 96;
+    const steps = HEIGHT / 108;
     for (let i = 0; i <= steps; i++) {
       const length = Math.floor(WIDTH / 52) - Math.floor(Math.random() * 10); //the length of the string we generate
       let str = "";
@@ -106,7 +106,7 @@ const textDecoration = computed(() => {
 }
 
 .hero-section {
-  @apply flex flex-col relative justify-center py-16 pt-24
+  @apply flex flex-col relative justify-center pb-16 pt-4
    z-20;
 
   .hero-wrapper {

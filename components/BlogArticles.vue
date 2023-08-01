@@ -16,10 +16,10 @@
         />
       </TransitionGroup>
       <h2 v-if="articles.length === 0 && props.isHomePage" class="title">
-        Come back later
+        {{ $t('later') }}
       </h2>
       <NuxtLink v-if="isHomePage" to="/blog" class="button"
-        >{{ "<See More />" }}</NuxtLink
+        >{{ $t('Seemore') }}</NuxtLink
       >
       <!-- <img
         class="absolute bottom-0 right-0 z-1"

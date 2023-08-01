@@ -24,13 +24,13 @@
         <div class="hero-wrapper">
           <div class="title-wrapper">
             <h1 class="title" :class="{ dark: isDark }">
-              {{ "<" }}Hi,I'm <br />
+              {{ "<" }}{{ $t('hi') }} <br />
               <span class="text-purple-900 dark:text-purple-300">Franso</span
               >{{ "/>" }}
             </h1>
           </div>
           <p class="lg:text-2xl text-xl text-gray-900 dark:text-white">
-            Cybersecurity engineer, pentester and CTF enthusiast
+            {{ $t('description') }}
           </p>
         </div>
         <img src="~/assets/images/hero-artwork-dark.png" class="hero-art" />

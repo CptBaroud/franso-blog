@@ -2,7 +2,7 @@
   <footer class="flex w-full justify-center">
     <section class="footer-section">
       <h4 class="text-xl text-black dark:text-white font-bold my-0">
-        All rights belong to
+        {{ $t('right') }}
         <a
           href="https://twitter.com/Fransosiche"
           target="_blank"
@@ -10,7 +10,7 @@
           >@Fransosiche</a
         >
       </h4>
-      <h3 class="text-xl font-normal">Made with ♡ by Gurvan</h3>
+      <h3 class="text-xl font-normal">{{ $t('Maded') }}</h3>
     </section>
   </footer>
 </template>

@@ -2,8 +2,8 @@
   <section class="hero">
     <div class="container pt-32">
       <h1 class="title" :class="{ dark: isDark }">
-        Find My <br />
-        <span> Articles</span>
+        {{ $t('Article1') }} <br />
+        <span> {{ $t('Article2') }}</span>
       </h1>
     </div>
   </section>

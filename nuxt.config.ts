@@ -5,7 +5,25 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@nuxtjs/color-mode', '@nuxt/content', '@nuxtjs/i18n'],
   i18n: {
-    vueI18n: './i18n.config.ts' 
+    langDir: 'locales/',
+    locales: [
+        {
+            code: 'fr',
+            iso: 'fr-FR',
+            file: 'fr.json'
+        },
+        {
+            code: 'en',
+            iso: 'en-EN',
+            file: 'en.json'
+        }
+    ],
+    defaultLocale: 'fr',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',  // recommended
+    }
   },
   postcss: {
     plugins: {

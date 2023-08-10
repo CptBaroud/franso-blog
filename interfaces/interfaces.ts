@@ -14,6 +14,11 @@ export interface ArticleSummaryItem {
     _path: string
 }
 
+export interface ArticleTranslations {
+    fr: string,
+    en: string
+}
+
 export interface ElementProps {
     offsetWidth: number;
     offsetHeight: number;

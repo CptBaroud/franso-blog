@@ -24,7 +24,7 @@ Une **page web** est une **collection de fichiers**, tels que *HTML, CSS et Java
 6. Si l'utilisateur effectue des actions qui nécessitent des demandes supplémentaires au serveur (par exemple, soumettre un formulaire), le `navigateur` envoie de nouvelles requêtes HTTP, et le cycle recommence.
 ::
 
-<img src="../../images/XSS/how_web_work.png" alt="How_Does_The_Web_Works" data-size="original" class="center-image">
+<img src="../../images/XSS/how_web_work_fr.png" alt="How_Does_The_Web_Works" data-size="original" class="center-image">
 
 ## JavaScript et définition globale de XSS
 
@@ -33,117 +33,122 @@ Dans cette introduction, j'ai parlé de **JavaScript**, un langage web permettan
 **Cross-Site Scripting est une attaque qui permet à un attaquant d'injecter du code malveillant dans une page web (généralement en JavaScript).**
 ::
 
-Le code malveillant est ensuite **exécuté par le navigateur des utilisateurs qui visitent la page**. Cela peut permettre à l'attaquant de `voler des informations confidentielles` telles que des mots de passe, des cookies de session ou même des données bancaires. Plus d'informations sur les [impacts plus tard](XSS_for_dummies.md#impacts).
+Le code malveillant est ensuite **exécuté par le navigateur des utilisateurs qui visitent la page**. Cela peut permettre à l'attaquant de `voler des informations confidentielles` telles que des mots de passe, des cookies de session ou même des données bancaires. Plus d'informations sur les [impacts plus tard](XSS_pour_les_nuls.md#impacts).
 
-<img src="../../images/XSS/XSS_BASIC.gif" alt="gif_what_is" data-size="original">
+<img src="../../images/XSS/FR_XSS_BASIC.gif" alt="gif_what_is" data-size="original">
 <br>
 
-XSS works on the principle of injection: **an attacker provides an untrusted input to a program, which then executes it, inducing a malicious action**.
-Injections are a common attack vector in cybersecurity, always top 3 in the OWASP top 10 (a standard awareness document for developers and Web application security).
+Le XSS fonctionne sur le principe de l'injection : **un attaquant fournit une entrée non fiable à un programme, qui l'exécute ensuite, induisant une action malveillante**.
+Les injections sont un vecteur d'attaque courant en cybersécurité, toujours dans le top 3 du top 10 de l'OWASP (un document de sensibilisation standard pour les développeurs et la sécurité des applications Web).
 
-There are **3 types of XSS**:
-1. [**Stored XSS**](XSS_for_dummies.md#stored-xss), 
-2. [**Reflected XSS**](XSS_for_dummies.md#reflected-xss), 
-3. [**DOM-based XSS**](XSS_for_dummies.md#dom-based-xss)
+Il existe **3 types de XSS** :
+1. [**XSS stocké**](XSS_pour_les_nuls.md#xss-stocké),
+2. [**XSS réfléchi**](XSS_pour_les_nuls.md#xss-réfléchi),
+3. [**XSS basé sur le DOM**](XSS_pour_les_nuls.md#xss-basé-sur-le-dom)
+
    
-We'll review each type, let's go !
+Nous allons passer en revue chaque type, c'est parti !
 
-## Stored XSS
+## XSS stocké
 
-Let's imagine that you're behind your screen, using a website that **let you post comments on articles**.
+Imaginez que vous soyez derrière votre écran, en train d'utiliser un site web qui **vous permet de poster des commentaires sur des articles**.
 
-If the site  **doesn't have sufficient protection against stored XSS attacks**, an attacker can post a comment containing a malicious script that will be stored on the server (in the comments database, for example).
+Si le site **n'a pas une protection suffisante contre les attaques XSS stockées**, un attaquant peut poster un commentaire contenant un script malveillant qui sera stocké sur le serveur (dans la base de données des commentaires, par exemple).
 ::hint{type="warning"}
-When other users access the article page and read the comments, their browser automatically executes the malicious script without them noticing.
+Lorsque d'autres utilisateurs accèdent à la page de l'article et lisent les commentaires, leur navigateur exécute automatiquement le script malveillant sans qu'ils s'en rendent compte.
 ::
-<img loading="lazy" width="920" height="510" src="../../images/XSS/XSS_Stockee.gif" alt="Stored_XSS" data-size="original" >
+
+<img loading="lazy" width="920" height="510" src="../../images/XSS/FR_XSS_Stockee.gif" alt="Stored_XSS" data-size="original" >
 
 ::hint{type="info"}
-**Stored XSS is self-explanatory in that the malicious script is stored on the server.**
+**Le XSS stocké est explicite en ce que le script malveillant est stocké sur le serveur.**
 ::
 
-It occurs when an **attacker manages to insert malicious code (usually in the form of a JavaScript script) into a Web page stored on the server**, which is then executed on the browsers of users accessing the page.
+Cela se produit lorsque qu'un **attaquant parvient à insérer un code malveillant (généralement sous forme d'un script JavaScript) dans une page Web stockée sur le serveur**, qui est ensuite exécuté sur les navigateurs des utilisateurs accédant à la page.
 
 <details>
-<summary class="summary">Stored XSS attack example</summary>
+<summary class="summary">Exemple d'attaque XSS stockée</summary>
 
-**Click to see the stored XSS attack example (with english subtitle)**.
+**Cliquez pour voir l'exemple d'attaque XSS stockée**.
+
 
 [![Minia_DOM_XSS](../../images/XSS/XSS_minia.png)](https://youtu.be/DFP3K5ZL1fs?t=435)
 
 </details>
 
-## Reflected XSS
+## XSS réfléchi
 
-Let's imagine that, once again, you're using a website that let you **search for products by entering search terms in a search bar**.
+Imaginons à nouveau que vous utilisiez un site web qui vous permet de **chercher des produits en entrant des termes de recherche dans une barre de recherche**.
 
 ::hint{type="warning"}
-If the site doesn't have sufficient protection against reflected XSS attacks, an attacker can insert malicious code into the search term that will be returned in the results page response. 
+Si le site n'a pas une protection suffisante contre les attaques XSS réfléchies, un attaquant peut insérer un code malveillant dans le terme de recherche qui sera renvoyé dans la réponse de la page de résultats.
 ::
-When you open the results page, your browser automatically executes the malicious script without you being aware of it.
+Lorsque vous ouvrez la page de résultats, votre navigateur exécute automatiquement le script malveillant sans que vous en ayez conscience.
 
-<img loading="lazy" width="920" height="510" src="../../images/XSS/XSS_Reflected.gif" alt="Stored_XSS" data-size="original">
+
+<img loading="lazy" width="920" height="510" src="../../images/XSS/FR_XSS_Reflected.gif" alt="Stored_XSS" data-size="original">
 
 ::hint{type="info"}
-**This is the most common XSS vulnerability. It occurs when an attacker inserts malicious code (JS) into an HTTP request, which is then returned in the web page response.**
+**Il s'agit de la vulnérabilité XSS la plus courante. Elle se produit lorsque qu'un attaquant insère un code malveillant (JS) dans une requête HTTP, qui est ensuite renvoyée dans la réponse de la page web.**
 ::
 
-If you've understood correctly, you're probably thinking that this XSS requires user interaction to work, as it is not stored. And you're right. That's why attackers often use **phishing with malicious links featuring reflected XSS** to make the victim execute the payload.
+Si vous avez bien compris, vous pensez probablement que cette XSS nécessite une interaction de l'utilisateur pour fonctionner, car elle n'est pas stockée. Et vous avez raison. C'est pourquoi les attaquants utilisent souvent **le phishing avec des liens malveillants contenant une XSS réfléchie** pour faire exécuter la charge utile par la victime.
 
 <details>
-<summary class="summary">Reflected XSS attack example</summary>
+<summary class="summary">Exemple d'attaque XSS réfléchie</summary>
 
-**Click to see the reflected XSS attack example (with english subtitle)**.
+**Cliquez pour voir l'exemple d'attaque XSS réfléchie**.
 
 [![Minia_DOM_XSS](../../images/XSS/XSS_minia.png)](https://youtu.be/DFP3K5ZL1fs?t=603)
 </details>
 
-## DOM-Based XSS
+## XSS basé sur le DOM
 
-Small disclaimer, it is the most complicated XSS to understand. But before talking about the XSS itself, a point on what the DOM is necessary.
+Petite mise en garde, c'est la XSS la plus compliquée à comprendre. Mais avant de parler de la XSS elle-même, un point sur ce qu'est le DOM est nécessaire.
 
-### What's DOM ?
+### Qu'est-ce que le DOM ?
 
 ::hint{type="info"}
-The Document Object Model (DOM) is an in-memory representation of a web page that allows web developers to manipulate the structure, style, and content of the page using JavaScript.
+Le Modèle d'Objet de Document (DOM) est une représentation en mémoire d'une page web qui permet aux développeurs web de manipuler la structure, le style et le contenu de la page en utilisant JavaScript.
 ::
 
-Simply put, the DOM is a hierarchy of objects that represent HTML elements (e.g.`<p>, <div>, <img>` tags, etc.) and **can be manipulated using methods and JavaScript properties.**
+Pour simplifier, le DOM est une hiérarchie d'objets qui représentent les éléments HTML (par exemple, les balises `<p>, <div>, <img>`, etc.) et **peuvent être manipulés à l'aide de méthodes et de propriétés JavaScript.**
 
 <img loading="lazy" width="920" height="510" src="../../images/XSS/DOM-tree.png" alt="Stored_XSS" data-size="original">
 
-Normally with this sentence you should start to understand where the vulnerability comes from.
+Normalement, avec cette phrase, vous devriez commencer à comprendre d'où provient la vulnérabilité.
 
-Indeed, who says dynamic modification of the DOM with JavaScript says possibility of abusing these dynamic modifications.
+En effet, qui dit modification dynamique du DOM avec JavaScript dit possibilité d'exploiter ces modifications dynamiques.
 
 ::hint{type="info"}
-The DOM BASED XSS will occur when an attacker manages to inject malicious code into the Web page by exploiting vulnerabilities in the Javascript code of the site.
+Le XSS basé sur le DOM se produira lorsque qu'un attaquant parvient à injecter un code malveillant dans la page Web en exploitant les vulnérabilités du code Javascript du site.
 ::
-When the user opens the web page, the malicious code is **executed directly on the user's browser**.
+Lorsque l'utilisateur ouvre la page web, le code malveillant est **exécuté directement sur le navigateur de l'utilisateur**.
 
-For example, if an HTML page contains this piece of vulnerable code:
+Par exemple, si une page HTML contient ce morceau de code vulnérable :
+
 ```HTML
 <script>
-    document.write(“Site is at:” + document.location.href + “.”);
+    document.write(“Le site est:” + document.location.href + “.”);
 </script>
 ```
 
-An attacker can add the JavaScript code to the URL pointing to this vulnerable page.
+Un attaquant peut ajouter le code JavaScript à l'URL pointant vers cette page vulnérable.
 ```HTML
 #<script>alert(document.cookie)</script>
 ```
-A pop-up is then displayed on the browser of the victim who will have carelessly clicked on this URL link.
+Une fenêtre pop-up est alors affichée sur le navigateur de la victime qui aura imprudemment cliqué sur ce lien URL.
 
 ::hint{type="info"}
-Unlike Stored and Reflected XSS, DOM-Based XSS does not require server interaction to function, making it particularly difficult to detect and prevent.
+Contrairement aux XSS stockés et réfléchis, le XSS basé sur le DOM ne nécessite pas d'interaction avec le serveur pour fonctionner, ce qui le rend particulièrement difficile à détecter et à prévenir.
 ::
 
-<img loading="lazy" width="920" height="510" src="../../images/XSS/XSS_DOM.gif" alt="Stored_XSS" data-size="original">
+<img loading="lazy" width="920" height="510" src="../../images/XSS/FR_XSS_DOM.gif" alt="Stored_XSS" data-size="original">
 
 <details>
-<summary class="summary">DOM Based XSS attack example</summary>
+<summary class="summary">Exemple d'attaque XSS basée sur le DOM</summary>
 
-**Click to see the DOM Based XSS attack example (with english subtitle)**.
+**Cliquez pour voir l'exemple d'attaque XSS basée sur le DOM**.
 
 [![Minia_DOM_XSS](../../images/XSS/XSS_minia.png)](https://youtu.be/DFP3K5ZL1fs?t=787)
 
@@ -152,45 +157,45 @@ Unlike Stored and Reflected XSS, DOM-Based XSS does not require server interacti
 
 ## Impacts
 
-**What can XSS be used for ?**
+**À quoi peut servir le XSS ?**
 
-* **Executing arbitrary code** on a victim's browser can enable an attacker to perform cookie theft (when cookies are not secure, attackers can steal them and use them to authenticate themselves as victims without needing to know their password).
+* **Exécuter un code arbitraire** sur le navigateur d'une victime peut permettre à un attaquant de voler des cookies (lorsque les cookies ne sont pas sécurisés, les attaquants peuvent les voler et les utiliser pour s'authentifier en tant que victimes sans avoir besoin de connaître leur mot de passe).
 
-* **Keylogging** (attackers can spy on victims and retrieve their keystrokes).
+* **Enregistrement des frappes** (les attaquants peuvent espionner les victimes et récupérer leurs frappes clavier).
 
-* **Phishing** (attackers can modify the appearance and behavior of the site, encouraging victims to send sensitive information to the attackers' servers).
+* **Phishing** (les attaquants peuvent modifier l'apparence et le comportement du site, incitant les victimes à envoyer des informations sensibles aux serveurs des attaquants).
   
-
 ::hint{type="info"}
-The actual impact of an XSS attack depends on the nature of the application, its functionality and data, and the status of the compromised user.
-* In an application where **all users are anonymous and all information is public**, the impact will often be **minimal**.
-* In an application containing **sensitive data, such as banking transactions, e-mails or medical records**, the impact will generally be **severe**.
-* If the compromised user has elevated privileges in the application, the impact will generally be **critical**, enabling the attacker to take **full control of the vulnerable application** and compromise all users and their data.
-
+L'impact réel d'une attaque XSS dépend de la nature de l'application, de ses fonctionnalités et de ses données, ainsi que du statut de l'utilisateur compromis.
+* Dans une application où **tous les utilisateurs sont anonymes et où toutes les informations sont publiques**, l'impact sera souvent **minime**.
+* Dans une application contenant **des données sensibles, comme des transactions bancaires, des e-mails ou des dossiers médicaux**, l'impact sera généralement **grave**.
+* Si l'utilisateur compromis a des privilèges élevés dans l'application, l'impact sera généralement **critique**, permettant à l'attaquant de prendre **le contrôle total de l'application vulnérable** et de compromettre tous les utilisateurs et leurs données.
 ::
-## Remediation
 
-* **Filter incoming data.** When user input is received, filter as strictly as possible on the basis of what is expected or valid input.
+## Mesures correctives
 
-* **Encode data on exit (depending on the context).** When user-controllable data is sent in HTTP responses, encode the output to prevent it from being interpreted as active content.
+* **Filtrer les données entrantes.** Lorsque des entrées utilisateur sont reçues, filtrez aussi strictement que possible en fonction de ce qui est attendu ou de ce qui constitue une entrée valide.
 
-  * `< converts to : &lt`
-  * `> converts to : &gt`
-  * `< converts to : \u003c`
-  * `> becomes : \u003e`
+* **Encoder les données en sortie (en fonction du contexte).** Lorsque des données contrôlables par l'utilisateur sont envoyées dans les réponses HTTP, encodez la sortie pour éviter qu'elle ne soit interprétée comme du contenu actif.
 
-* **Use appropriate response headers.** To avoid XSS in HTTP responses that aren't supposed to contain HTML or JavaScript, you can use **Content-Type and X-Content-Type-Options** headers to ensure that browsers interpret responses as you intend.
+  * `<` devient : &lt;
+  * `>` devient : &gt;
+  * `<` devient : \u003c
+  * `>` devient : \u003e
 
-* **Content Security Policy (CSP)** - is the last line of defense that can be used to mitigate the severity of XSS vulnerabilities that still occur.
-    CSP allows you to control various elements, such as loading external scripts and executing inline scripts.
+* **Utiliser des en-têtes de réponse appropriées.** Pour éviter les XSS dans les réponses HTTP qui ne sont pas censées contenir de HTML ou de JavaScript, vous pouvez utiliser les en-têtes **Content-Type et X-Content-Type-Options** pour vous assurer que les navigateurs interprètent les réponses comme vous l'avez prévu.
+
+* **Politique de sécurité du contenu (CSP)** - est la dernière ligne de défense qui peut être utilisée pour atténuer la gravité des vulnérabilités XSS qui surviennent toujours.
+    CSP vous permet de contrôler divers éléments, tels que le chargement de scripts externes et l'exécution de scripts en ligne.
     ::hint{type="info"}
-    To deploy CSP, you need to include an HTTP response header called "Content-Security-Policy" with a value containing your policy.
+    Pour déployer CSP, vous devez inclure un en-tête de réponse HTTP appelé "Content-Security-Policy" avec une valeur contenant votre politique.
     ::
-    An example of CSP is as follows:<br/>
+    Un exemple de CSP est le suivant :<br/>
 
     ```default-src 'self'; script-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none';```<br />
 
-    This policy specifies that resources like images and scripts can only be loaded from the same origin as the main page. Therefore, even if a hacker manages to inject an XSS payload, they can only load resources from the current origin. This significantly reduces the chances of an attacker exploiting the XSS vulnerability.
+    Cette politique spécifie que les ressources telles que les images et les scripts ne peuvent être chargées que depuis la même origine que la page principale. Par conséquent, même si un pirate parvient à injecter une charge utile XSS, il ne peut charger que des ressources depuis l'origine actuelle. Cela réduit considérablement les chances pour un attaquant d'exploiter la vulnérabilité XSS.
+
 <img loading="lazy" width="920" height="510" src="../../images/XSS/CSP.gif" alt="Stored_XSS" data-size="original">
 
 

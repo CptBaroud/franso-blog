@@ -11,7 +11,7 @@ const blogLink = computed(() => {
   if (locale.value === 'en') {
     return '/en/blog';
   } else {
-    return '/fr/blog';
+    return '/blog';
   }
 });
 

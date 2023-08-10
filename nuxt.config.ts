@@ -20,10 +20,10 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'fr',
     detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root',  // recommended
-    }
+        useCookie: true,
+        cookieKey: 'i18n_redirected',
+        redirectOn: 'root',  // recommended
+      }
   },
   postcss: {
     plugins: {

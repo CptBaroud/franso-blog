@@ -5,7 +5,6 @@ export const useThemeStore = defineStore('themeStore', () => {
   let isDark = ref(false)
 
   function setTheme(value: boolean) {
-    console.log('hello world');
     
     isDark.value = value
   }

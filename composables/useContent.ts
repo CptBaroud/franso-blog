@@ -5,7 +5,6 @@ export default function useArticles() {
     // Define a function to list all articles
     const listArticles = async () => {
         const locale = useI18n();
-        console.log(locale.locale.value)
         return await queryContent<ArticleChunk[]>(`/${locale.locale.value}/blog`).only(['tags', 'title', 'description', '_path']).find()
     };
 

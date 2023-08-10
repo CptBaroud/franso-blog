@@ -1,6 +1,7 @@
 ---
 tags: ['XSS', 'Vulgarisation', 'Web', 'Pentest']
 description: "Permettez-moi de vulgariser l'une des vulnérabilités web les plus courantes, le Cross Site Scripting, également connu sous le nom de XSS."
+translation: { "fr": "xss_pour_les_nuls", "en": "xss_for_dummies"}
 ---
   
 # XSS pour les nuls

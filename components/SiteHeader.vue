@@ -2,26 +2,9 @@
 import iconLight from "../assets/icons/icon-sun.svg?component";
 import iconDark from "~/assets/icons/icon-moon.svg?component";
 
-const switchLocalePath = useSwitchLocalePath()
-
+const switchLocalePath = useSwitchLocalePath();
+const localePath = useLocalePath();
 const colorMode = useColorMode();
-const { locale } = useI18n();
-
-const blogLink = computed(() => {
-  if (locale.value === 'en') {
-    return '/en/blog';
-  } else {
-    return '/blog';
-  }
-});
-
-const homeLink = computed(() => {
-  if (locale.value === 'en') {
-    return '/en';
-  } else {
-    return '/';
-  }
-});
 
 function setTheme() {
   if (colorMode.preference === "dark") {
@@ -32,7 +15,6 @@ function setTheme() {
 }
 </script>
 
-
 <template>
   <header class="header">
     <nav class="header-nav">
@@ -40,19 +22,22 @@ function setTheme() {
         <h1
           class="lg:text-3xl text-xl font-bold text-black dark:text-white uppercase my-0"
         >
-          <NuxtLink :to="homeLink"> {{ $t("headermsg") }}</NuxtLink>
+          <NuxtLink :to="localePath('/')"> {{ $t("headermsg") }}</NuxtLink>
         </h1>
       </div>
       <div class="w-full inline-flex items-center justify-end">
         <ul class="flex flex-row px-8 gap-8">
-          <NuxtLink class="nav-item" :to="blogLink"> Blog </NuxtLink>
+          <NuxtLink class="nav-item" :to="localePath('/blog')"> Blog </NuxtLink>
           <a
             href="https://www.youtube.com/@Fransosiche/videos"
             target="_blank"
             class="nav-item"
             >Videos</a
           >
-          <NuxtLink  class="nav-item" :to="switchLocalePath($i18n.locale === 'en' ? 'fr' : 'en' )">
+          <NuxtLink
+            class="nav-item"
+            :to="switchLocalePath($i18n.locale === 'en' ? 'fr' : 'en')"
+          >
             {{ $i18n.locale === "en" ? "FR" : "EN" }}
           </NuxtLink>
         </ul>
@@ -66,7 +51,6 @@ function setTheme() {
     </nav>
   </header>
 </template>
-
 
 <style lang="scss" scoped>
 .header {

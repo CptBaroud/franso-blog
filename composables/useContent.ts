@@ -1,17 +1,20 @@
-import { ArticleChunk, ArticleSummaryItem, children, navLinks } from "~~/interfaces/interfaces";
+import { ArticleChunk, ArticleSummaryItem, ArticleTranslations, children, navLinks } from "~~/interfaces/interfaces";
 
 export default function useArticles() {
 
     // Define a function to list all articles
     const listArticles = async () => {
         const locale = useI18n();
-        return await queryContent<ArticleChunk[]>(`/${locale.locale.value}/blog`).only(['tags', 'title', 'description', '_path']).find()
+        return await queryContent<ArticleChunk[]>(`/${locale.locale.value}/blog`).only(['tags', 'title', 'description', '_path']).find();
     };
 
     const summaryArticles = async () => {
         const locale = useI18n();
-        return await queryContent<ArticleSummaryItem>(`/${locale.locale.value}/blog'`).only(['title', '_path']).find()
+        return await queryContent<ArticleSummaryItem>(`/${locale.locale.value}/blog'`).only(['title', '_path', 'translation']).find();
+    }
 
+    const translations = async (path: string): Promise<ArticleTranslations> => {
+        return await queryContent<ArticleTranslations>(path).only(['translation']).findOne();
     }
 
     // Define a function to search through the content of an article
@@ -43,5 +46,5 @@ export default function useArticles() {
     };
 
     // Return the functions to be used in the component
-    return { listArticles, findInsideLinks, summaryArticles };
+    return { listArticles, findInsideLinks, summaryArticles, translations };
 }

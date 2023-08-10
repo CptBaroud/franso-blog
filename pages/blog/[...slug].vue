@@ -3,14 +3,14 @@
     <div class="container bg">
       <div class="w-full">
         <NuxtLink
-          to="/blog"
+          :to="localePath('/blog')"
           class="text-xl hover:text-black/75 hover:dark:text-white/75 hover:underline underline-offset-4 pb-4"
           >{{ "<" }} Back</NuxtLink
         >
       </div>
       <ContentDoc class="content w-full" />
     </div>
-    <div class="bg px-2 py-8 sticky top-8">
+    <div class="md:block hidden bg px-2 py-8 sticky top-8">
       <div class="flex w-48 flex-col">
         <ul class="nav">
           <li class="list-none" v-for="link in nav" :key="link.id">
@@ -37,14 +37,29 @@
 
 <script lang="ts" setup>
 import useContent from "@/composables/useContent";
-import { navLinks } from "@/interfaces/interfaces";
+import { navLinks, ArticleTranslations } from "@/interfaces/interfaces";
 
-const { findInsideLinks } = useContent();
-const nav = ref<navLinks[]>([]);
+const { findInsideLinks, translations } = useContent();
+const localePath = useLocalePath();
 const route = useRoute();
+
+const nav = ref<navLinks[]>([]);
+const translatedPath = ref<ArticleTranslations>({ fr: "", en: "" });
+
+definePageMeta({
+  nuxtI18n: {
+    en: { slug: [""] },
+    fr: { slug: [""] },
+  },
+});
 
 onMounted(async () => {
   nav.value = await findInsideLinks(route.path);
+  translatedPath.value = await translations(route.path);
+  route.meta.nuxtI18n = {
+    en: { slug: [translatedPath.value.en] },
+    fr: { slug: [translatedPath.value.fr] },
+  };
 });
 </script>
 

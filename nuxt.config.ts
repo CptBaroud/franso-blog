@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@nuxtjs/color-mode', '@nuxt/content', '@nuxtjs/i18n'],
   i18n: {
     langDir: 'locales/',
+    strategy: 'prefix_and_default',
     locales: [
         {
             code: 'fr',

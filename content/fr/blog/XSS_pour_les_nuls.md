@@ -43,14 +43,14 @@ Le XSS fonctionne sur le principe de l'injection : **un attaquant fournit une en
 Les injections sont un vecteur d'attaque courant en cybersécurité, toujours dans le top 3 du top 10 de l'OWASP (un document de sensibilisation standard pour les développeurs et la sécurité des applications Web).
 
 Il existe **3 types de XSS** :
-1. [**XSS stocké**](XSS_pour_les_nuls.md#xss-stocké),
-2. [**XSS réfléchi**](XSS_pour_les_nuls.md#xss-réfléchi),
-3. [**XSS basé sur le DOM**](XSS_pour_les_nuls.md#xss-basé-sur-le-dom)
+1. [**XSS stocké**](XSS_pour_les_nuls.md#xss-stockée),
+2. [**XSS réfléchi**](XSS_pour_les_nuls.md#xss-réfléchie),
+3. [**XSS basé sur le DOM**](XSS_pour_les_nuls.md#xss-basée-sur-le-dom)
 
    
 Nous allons passer en revue chaque type, c'est parti !
 
-## XSS stocké
+## XSS stockée
 
 Imaginez que vous soyez derrière votre écran, en train d'utiliser un site web qui **vous permet de poster des commentaires sur des articles**.
 
@@ -77,7 +77,7 @@ Cela se produit lorsque qu'un **attaquant parvient à insérer un code malveilla
 
 </details>
 
-## XSS réfléchi
+## XSS réfléchie
 
 Imaginons à nouveau que vous utilisiez un site web qui vous permet de **chercher des produits en entrant des termes de recherche dans une barre de recherche**.
 
@@ -103,7 +103,7 @@ Si vous avez bien compris, vous pensez probablement que cette XSS nécessite une
 [![Minia_DOM_XSS](../../images/XSS/XSS_minia.png)](https://youtu.be/DFP3K5ZL1fs?t=603)
 </details>
 
-## XSS basé sur le DOM
+## XSS basée sur le DOM
 
 Petite mise en garde, c'est la XSS la plus compliquée à comprendre. Mais avant de parler de la XSS elle-même, un point sur ce qu'est le DOM est nécessaire.
 
@@ -200,7 +200,7 @@ L'impact réel d'une attaque XSS dépend de la nature de l'application, de ses f
 <img loading="lazy" width="920" height="510" src="../../images/XSS/CSP.gif" alt="Stored_XSS" data-size="original">
 
 
-## Resources
+## Ressources
 
 ::embedUrl{url="https://icesi.fr/5_Faille-XSS-ou-le-Cross-Site-Scripting.html"}
 5_Faille-XSS-ou-le-Cross-Site-Scripting | Icesi

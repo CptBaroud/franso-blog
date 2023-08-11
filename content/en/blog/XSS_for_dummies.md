@@ -68,7 +68,7 @@ It occurs when an **attacker manages to insert malicious code (usually in the fo
 <details>
 <summary class="summary">Stored XSS attack example</summary>
 
-**Click to see the stored XSS attack example (with english subtitle)**.
+**Click to see the stored XSS attack example (with english subtitle coming soon)**.
 
 [![Minia_DOM_XSS](../../images/XSS/XSS_minia.png)](https://youtu.be/DFP3K5ZL1fs?t=435)
 
@@ -94,7 +94,7 @@ If you've understood correctly, you're probably thinking that this XSS requires 
 <details>
 <summary class="summary">Reflected XSS attack example</summary>
 
-**Click to see the reflected XSS attack example (with english subtitle)**.
+**Click to see the reflected XSS attack example (with english subtitle coming soon)**.
 
 [![Minia_DOM_XSS](../../images/XSS/XSS_minia.png)](https://youtu.be/DFP3K5ZL1fs?t=603)
 </details>
@@ -144,7 +144,7 @@ Unlike Stored and Reflected XSS, DOM-Based XSS does not require server interacti
 <details>
 <summary class="summary">DOM Based XSS attack example</summary>
 
-**Click to see the DOM Based XSS attack example (with english subtitle)**.
+**Click to see the DOM Based XSS attack example (with english subtitle coming soon)**.
 
 [![Minia_DOM_XSS](../../images/XSS/XSS_minia.png)](https://youtu.be/DFP3K5ZL1fs?t=787)
 

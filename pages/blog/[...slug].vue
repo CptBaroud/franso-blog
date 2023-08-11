@@ -5,7 +5,7 @@
         <NuxtLink
           :to="localePath('/blog')"
           class="text-xl hover:text-black/75 hover:dark:text-white/75 hover:underline underline-offset-4 pb-4"
-          >{{ "<" }} Back</NuxtLink
+          >{{ "<" }} {{ $t('retour') }}</NuxtLink
         >
       </div>
       <ContentDoc class="content w-full" />

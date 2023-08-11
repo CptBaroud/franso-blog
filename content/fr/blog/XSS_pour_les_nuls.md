@@ -1,12 +1,12 @@
 ---
 tags: ['XSS', 'Vulgarisation', 'Web', 'Pentest']
-description: "Permettez-moi de vulgariser l'une des vulnérabilités web les plus courantes, le Cross Site Scripting, également connu sous le nom de XSS."
+description: "XSS, qu'est-ce que c'est ? Je me penche sur le sujet en vous vulgarisant cette vulnérabilité web courante !"
 translation: { "fr": "xss_pour_les_nuls", "en": "xss_for_dummies"}
 ---
   
 # XSS pour les nuls
 
-Aujourd'hui, nous allons jeter un coup d'œil à l'origine de l'une des vulnérabilités les plus courantes et exploitées sur Internet : le **XSS**, également connu sous le nom de **cross-site scripting**. Si vous n'êtes **pas familier** avec la sécurité web, ne vous inquiétez pas, je vais tout vous expliquer ! **Commençons !**
+Aujourd'hui, nous allons jeter un coup d'œil à l'origine de l'une des vulnérabilités les plus courantes et exploitées sur Internet : la **XSS**, également connu sous le nom de **cross-site scripting**. Si vous n'êtes **pas familier** avec la sécurité web, ne vous inquiétez pas, je vais tout vous expliquer ! **Commençons !**
 
 ## Comment fonctionne le web
 

@@ -24,21 +24,16 @@
         <div class="hero-wrapper">
           <div class="title-wrapper">
             <h1 class="title" :class="{ dark: isDark }">
-              {{ "<" }}Hi,I'm <br />
+              {{ "<" }}{{ $t('hi') }} <br />
               <span class="text-purple-900 dark:text-purple-300">Franso</span
               >{{ "/>" }}
             </h1>
           </div>
           <p class="lg:text-2xl text-xl text-gray-900 dark:text-white">
-            Cybersecurity engineer and pentester enthusiast
+            {{ $t('description') }}
           </p>
         </div>
-        <img
-          :src="
-            useAsset(`images/hero-artwork-${$colorMode.preference}` + '.png')
-          "
-          class="hero-art"
-        />
+        <img src="~/assets/images/hero-artwork-dark.png" class="hero-art" />
       </div>
     </section>
 
@@ -52,6 +47,9 @@ import { ElementProps } from "~~/interfaces/interfaces";
 const heroSection: Ref<ElementProps | null> = ref(null);
 
 const isDark = useTheme();
+const colorMode = useColorMode();
+
+const heroImgUrl = `~/assets/images/hero-artwork-dark.png`;
 
 const textDecoration = computed(() => {
   const HEIGHT = heroSection.value?.offsetHeight;
@@ -59,7 +57,7 @@ const textDecoration = computed(() => {
   let temp: string[] = [];
 
   if (HEIGHT && WIDTH) {
-    const steps = HEIGHT / 96;
+    const steps = HEIGHT / 108;
     for (let i = 0; i <= steps; i++) {
       const length = Math.floor(WIDTH / 52) - Math.floor(Math.random() * 10); //the length of the string we generate
       let str = "";
@@ -104,23 +102,12 @@ const textDecoration = computed(() => {
 }
 
 .container {
-  @apply flex 
-    md:flex-row relative lg:gap-32 
-    flex-col-reverse gap-8
-    items-center justify-around max-w-[1200px] z-10;
-}
-
-.unselectable {
-  // Text non selectionable
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
+  @apply md:flex-row flex-col-reverse gap-8;
 }
 
 .hero-section {
-  @apply flex flex-col relative justify-center py-16 pt-48
-    bg-light-start dark:bg-dark-start z-20;
+  @apply flex flex-col relative justify-center pb-16 pt-4
+   z-20;
 
   .hero-wrapper {
     @apply flex font-Inconsolata flex-col gap-4;

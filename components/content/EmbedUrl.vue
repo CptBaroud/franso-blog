@@ -11,10 +11,10 @@ interface IEmbed {
 
 const props = defineProps<IEmbed>();
 
-onMounted(async () => {
-  const rep = await fetch(props.url);
-  const data = await rep.json();
-});
+// onMounted(async () => {
+//   const rep = await fetch(props.url);
+//   const data = await rep.json();
+// });
 </script>
 
 <style lang="scss" scoped>

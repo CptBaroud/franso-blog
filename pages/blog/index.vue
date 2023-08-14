@@ -2,13 +2,15 @@
   <section class="hero">
     <div class="container pt-32">
       <h1 class="title" :class="{ dark: isDark }">
-        Find <br /><span>my articles</span>
+        {{ $t('Article1') }} <br />
+        <span> {{ $t('Article2') }}</span>
       </h1>
     </div>
-    <BlobDecoration :small="4" :large="0" :medium="1">
-      <BlogArticles class="bg-none" :is-home-page="false" />
-    </BlobDecoration>
   </section>
+  <BlogArticles class="bg-none" :is-home-page="false" />
+  <!-- <BlobDecoration :small="4" :large="0" :medium="1">
+    <BlogArticles class="bg-none" :is-home-page="false" />
+  </BlobDecoration> -->
 </template>
 
 <script setup lang="ts">
@@ -26,11 +28,11 @@ const isDark = useTheme();
 }
 
 .container {
-  @apply flex flex-row relative gap-32 items-center justify-center max-w-[1200px] z-10;
+  @apply pt-12;
 }
 
 .hero {
-  @apply flex flex-col justify-center items-center gap-48 py-48 bg-light-full dark:bg-dark-full;
+  @apply flex flex-col justify-center items-center gap-8 xl:gap-48 pt-12 xl:pt-24;
 
   .container {
     @apply justify-start;
@@ -38,7 +40,7 @@ const isDark = useTheme();
 }
 
 .title {
-  @apply text-6xl uppercase font-black text-black dark:text-white;
+  @apply text-5xl xl:text-6xl font-Inconsolata uppercase font-black text-black dark:text-white;
   text-shadow: 0px 0px 142px rgba(0, 0, 0, 0.33), 0px 0px 142px #9747ff;
   &.dark {
     text-shadow: 0px 0px 142px rgba(255, 255, 255, 0.33), 0px 0px 142px #9747ff;

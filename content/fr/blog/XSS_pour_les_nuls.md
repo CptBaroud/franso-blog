@@ -25,7 +25,9 @@ Une **page web** est une **collection de fichiers**, tels que *HTML, CSS et Java
 6. Si l'utilisateur effectue des actions qui nécessitent des demandes supplémentaires au serveur (par exemple, soumettre un formulaire), le `navigateur` envoie de nouvelles requêtes HTTP, et le cycle recommence.
 ::
 
-<img src="../../images/XSS/how_web_work_fr.png" alt="How_Does_The_Web_Works" data-size="original" class="center-image">
+| ![how_web_works](../../images/XSS/how_web_work_fr.png) | 
+|:--:| 
+| *Schema expliquant le fonctionnement du web* |
 
 ## JavaScript et définition globale de XSS
 
@@ -36,21 +38,24 @@ Dans cette introduction, j'ai parlé de **JavaScript**, un langage web permettan
 
 Le code malveillant est ensuite **exécuté par le navigateur des utilisateurs qui visitent la page**. Cela peut permettre à l'attaquant de `voler des informations confidentielles` telles que des mots de passe, des cookies de session ou même des données bancaires. Plus d'informations sur les [impacts plus tard](XSS_pour_les_nuls.md#impacts).
 
-<img src="../../images/XSS/FR_XSS_BASIC.gif" alt="gif_what_is" data-size="original">
+
+| ![FR_XSS_BASIC](../../images/XSS/FR_XSS_BASIC.gif) | 
+|:--:| 
+| *Fonctionnement d'une XSS basique* |
 <br>
 
 Le XSS fonctionne sur le principe de l'injection : **un attaquant fournit une entrée non fiable à un programme, qui l'exécute ensuite, induisant une action malveillante**.
 Les injections sont un vecteur d'attaque courant en cybersécurité, toujours dans le top 3 du top 10 de l'OWASP (un document de sensibilisation standard pour les développeurs et la sécurité des applications Web).
 
 Il existe **3 types de XSS** :
-1. [**XSS stocké**](XSS_pour_les_nuls.md#xss-stocké),
-2. [**XSS réfléchi**](XSS_pour_les_nuls.md#xss-réfléchi),
-3. [**XSS basé sur le DOM**](XSS_pour_les_nuls.md#xss-basé-sur-le-dom)
+1. [**XSS stockée**](XSS_pour_les_nuls.md#xss-stockée),
+2. [**XSS réfléchie**](XSS_pour_les_nuls.md#xss-réfléchie),
+3. [**XSS basée sur le DOM**](XSS_pour_les_nuls.md#xss-basée-sur-le-dom)
 
    
 Nous allons passer en revue chaque type, c'est parti !
 
-## XSS stocké
+## XSS stockée
 
 Imaginez que vous soyez derrière votre écran, en train d'utiliser un site web qui **vous permet de poster des commentaires sur des articles**.
 
@@ -59,10 +64,13 @@ Si le site **n'a pas une protection suffisante contre les attaques XSS stockées
 Lorsque d'autres utilisateurs accèdent à la page de l'article et lisent les commentaires, leur navigateur exécute automatiquement le script malveillant sans qu'ils s'en rendent compte.
 ::
 
-<img loading="lazy" width="920" height="510" src="../../images/XSS/FR_XSS_Stockee.gif" alt="Stored_XSS" data-size="original" >
+
+| ![FR_XSS_Stockee](../../images/XSS/FR_XSS_Stockee.gif) | 
+|:--:| 
+| *Fonctionnement d'une XSS stockée* |
 
 ::hint{type="info"}
-**Le XSS stocké est explicite en ce que le script malveillant est stocké sur le serveur.**
+**La XSS stockée est explicite en ce que le script malveillant est stocké sur le serveur.**
 ::
 
 Cela se produit lorsque qu'un **attaquant parvient à insérer un code malveillant (généralement sous forme d'un script JavaScript) dans une page Web stockée sur le serveur**, qui est ensuite exécuté sur les navigateurs des utilisateurs accédant à la page.
@@ -77,7 +85,7 @@ Cela se produit lorsque qu'un **attaquant parvient à insérer un code malveilla
 
 </details>
 
-## XSS réfléchi
+## XSS réfléchie
 
 Imaginons à nouveau que vous utilisiez un site web qui vous permet de **chercher des produits en entrant des termes de recherche dans une barre de recherche**.
 
@@ -87,7 +95,11 @@ Si le site n'a pas une protection suffisante contre les attaques XSS réfléchie
 Lorsque vous ouvrez la page de résultats, votre navigateur exécute automatiquement le script malveillant sans que vous en ayez conscience.
 
 
-<img loading="lazy" width="920" height="510" src="../../images/XSS/FR_XSS_Reflected.gif" alt="Stored_XSS" data-size="original">
+
+| ![FR_XSS_Reflected](../../images/XSS/FR_XSS_Reflected.gif) | 
+|:--:| 
+| *Fonctionnement d'une XSS réfléchie* |
+
 
 ::hint{type="info"}
 **Il s'agit de la vulnérabilité XSS la plus courante. Elle se produit lorsque qu'un attaquant insère un code malveillant (JS) dans une requête HTTP, qui est ensuite renvoyée dans la réponse de la page web.**
@@ -103,7 +115,7 @@ Si vous avez bien compris, vous pensez probablement que cette XSS nécessite une
 [![Minia_DOM_XSS](../../images/XSS/XSS_minia.png)](https://youtu.be/DFP3K5ZL1fs?t=603)
 </details>
 
-## XSS basé sur le DOM
+## XSS basée sur le DOM
 
 Petite mise en garde, c'est la XSS la plus compliquée à comprendre. Mais avant de parler de la XSS elle-même, un point sur ce qu'est le DOM est nécessaire.
 
@@ -115,14 +127,16 @@ Le Modèle d'Objet de Document (DOM) est une représentation en mémoire d'une p
 
 Pour simplifier, le DOM est une hiérarchie d'objets qui représentent les éléments HTML (par exemple, les balises `<p>, <div>, <img>`, etc.) et **peuvent être manipulés à l'aide de méthodes et de propriétés JavaScript.**
 
-<img loading="lazy" width="920" height="510" src="../../images/XSS/DOM-tree.png" alt="Stored_XSS" data-size="original">
+| ![DOM-tree](../../images/XSS/DOM-tree.png) | 
+|:--:| 
+| *Arbre DOM* |
 
 Normalement, avec cette phrase, vous devriez commencer à comprendre d'où provient la vulnérabilité.
 
 En effet, qui dit modification dynamique du DOM avec JavaScript dit possibilité d'exploiter ces modifications dynamiques.
 
 ::hint{type="info"}
-Le XSS basé sur le DOM se produira lorsque qu'un attaquant parvient à injecter un code malveillant dans la page Web en exploitant les vulnérabilités du code Javascript du site.
+La XSS basée sur le DOM se produira lorsque qu'un attaquant parvient à injecter un code malveillant dans la page Web en exploitant les vulnérabilités du code Javascript du site.
 ::
 Lorsque l'utilisateur ouvre la page web, le code malveillant est **exécuté directement sur le navigateur de l'utilisateur**.
 
@@ -141,10 +155,12 @@ Un attaquant peut ajouter le code JavaScript à l'URL pointant vers cette page v
 Une fenêtre pop-up est alors affichée sur le navigateur de la victime qui aura imprudemment cliqué sur ce lien URL.
 
 ::hint{type="info"}
-Contrairement aux XSS stockés et réfléchis, le XSS basé sur le DOM ne nécessite pas d'interaction avec le serveur pour fonctionner, ce qui le rend particulièrement difficile à détecter et à prévenir.
+Contrairement aux XSS stockées et réfléchies, la XSS basée sur le DOM ne nécessite pas d'interaction avec le serveur pour fonctionner, ce qui le rend particulièrement difficile à détecter et à prévenir.
 ::
 
-<img loading="lazy" width="920" height="510" src="../../images/XSS/FR_XSS_DOM.gif" alt="Stored_XSS" data-size="original">
+| ![FR_XSS_DOM](../../images/XSS/FR_XSS_DOM.gif) | 
+|:--:| 
+| *Fonctionnement d'une DOM BASED XSS* |
 
 <details>
 <summary class="summary">Exemple d'attaque XSS basée sur le DOM</summary>
@@ -197,8 +213,10 @@ L'impact réel d'une attaque XSS dépend de la nature de l'application, de ses f
 
     Cette politique spécifie que les ressources telles que les images et les scripts ne peuvent être chargées que depuis la même origine que la page principale. Par conséquent, même si un pirate parvient à injecter une charge utile XSS, il ne peut charger que des ressources depuis l'origine actuelle. Cela réduit considérablement les chances pour un attaquant d'exploiter la vulnérabilité XSS.
 
-<img loading="lazy" width="920" height="510" src="../../images/XSS/CSP.gif" alt="Stored_XSS" data-size="original">
 
+| ![CSP](../../images/XSS/CSP_fr.gif) | 
+|:--:| 
+| *Fonctionnement des CSP* |
 
 ## Resources
 

@@ -25,7 +25,9 @@ A **web page** is a **collection of files**, such as *HTML, CSS and JavaScript*,
 6. If the user performs actions that require additional requests to the server (e.g., submitting a form), the `browser` sends new HTTP requests and the cycle starts again.
 ::
 
-<img src="../../images/XSS/how_web_work.png" alt="How_Does_The_Web_Works" data-size="original" class="center-image">
+| ![how_web_works](../../images/XSS/how_web_work.png) | 
+|:--:| 
+| *Schema explaining how does the web works* |
 
 ## Javascript and global XSS definition
 
@@ -36,7 +38,9 @@ In this introduction, I talked about **javascript**, a web language for adding d
 
 The malicious code is then **executed by the browser of the users visiting the page**. This can enable the attacker to `steal confidential information` such as passwords, session cookies or even banking data. More on the [impact later](XSS_for_dummies.md#impacts).
 
-<img src="../../images/XSS/XSS_BASIC.gif" alt="gif_what_is" data-size="original">
+| ![XSS_BASIC](../../images/XSS/XSS_BASIC.gif) | 
+|:--:| 
+| *How a basic XSS injection works* |
 <br>
 
 XSS works on the principle of injection: **an attacker provides an untrusted input to a program, which then executes it, inducing a malicious action**.
@@ -57,7 +61,10 @@ If the site  **doesn't have sufficient protection against stored XSS attacks**, 
 ::hint{type="warning"}
 When other users access the article page and read the comments, their browser automatically executes the malicious script without them noticing.
 ::
-<img loading="lazy" width="920" height="510" src="../../images/XSS/XSS_Stockee.gif" alt="Stored_XSS" data-size="original" >
+
+| ![XSS_Stockee](../../images/XSS/XSS_Stockee.gif) | 
+|:--:| 
+| *How stored XSS works* |
 
 ::hint{type="info"}
 **Stored XSS is self-explanatory in that the malicious script is stored on the server.**
@@ -83,7 +90,9 @@ If the site doesn't have sufficient protection against reflected XSS attacks, an
 ::
 When you open the results page, your browser automatically executes the malicious script without you being aware of it.
 
-<img loading="lazy" width="920" height="510" src="../../images/XSS/XSS_Reflected.gif" alt="Stored_XSS" data-size="original">
+| ![XSS_Reflected](../../images/XSS/XSS_Reflected.gif) | 
+|:--:| 
+| *How reflected XSS works* |
 
 ::hint{type="info"}
 **This is the most common XSS vulnerability. It occurs when an attacker inserts malicious code (JS) into an HTTP request, which is then returned in the web page response.**
@@ -111,7 +120,9 @@ The Document Object Model (DOM) is an in-memory representation of a web page tha
 
 Simply put, the DOM is a hierarchy of objects that represent HTML elements (e.g.`<p>, <div>, <img>` tags, etc.) and **can be manipulated using methods and JavaScript properties.**
 
-<img loading="lazy" width="920" height="510" src="../../images/XSS/DOM-tree.png" alt="Stored_XSS" data-size="original">
+| ![DOM-tree](../../images/XSS/DOM-tree.png) | 
+|:--:| 
+| *DOM tree* |
 
 Normally with this sentence you should start to understand where the vulnerability comes from.
 
@@ -139,7 +150,9 @@ A pop-up is then displayed on the browser of the victim who will have carelessly
 Unlike Stored and Reflected XSS, DOM-Based XSS does not require server interaction to function, making it particularly difficult to detect and prevent.
 ::
 
-<img loading="lazy" width="920" height="510" src="../../images/XSS/XSS_DOM.gif" alt="Stored_XSS" data-size="original">
+| ![Stored_XSS](../../images/XSS/XSS_DOM.gif) | 
+|:--:| 
+| *How stored XSS works* |
 
 <details>
 <summary class="summary">DOM Based XSS attack example</summary>
@@ -192,7 +205,10 @@ The actual impact of an XSS attack depends on the nature of the application, its
     ```default-src 'self'; script-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none';```<br />
 
     This policy specifies that resources like images and scripts can only be loaded from the same origin as the main page. Therefore, even if a hacker manages to inject an XSS payload, they can only load resources from the current origin. This significantly reduces the chances of an attacker exploiting the XSS vulnerability.
-<img loading="lazy" width="920" height="510" src="../../images/XSS/CSP.gif" alt="Stored_XSS" data-size="original">
+
+| ![CSP](../../images/XSS/CSP.gif) | 
+|:--:| 
+| *How CSP works* |
 
 
 ## Resources

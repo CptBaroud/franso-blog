@@ -1,14 +1,14 @@
 <template>
   <section>
     <div class="container bg">
-      <div class="w-full">
+      <div class="w-full p-4">
         <NuxtLink
           :to="localePath('/blog')"
           class="text-xl hover:text-black/75 hover:dark:text-white/75 hover:underline underline-offset-4 pb-4"
           >{{ "<" }} Back</NuxtLink
         >
       </div>
-      <ContentDoc class="content w-full" />
+      <ContentDoc class="content w-full px-4" />
     </div>
     <div class="md:block hidden bg px-2 py-8 sticky top-8">
       <div class="flex w-48 flex-col">

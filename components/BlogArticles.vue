@@ -1,10 +1,10 @@
 <template>
-  <section class="blog-section" :class="{ bg: isHomePage }">
+  <section class="blog-section">
     <h1 v-if="isHomePage" class="bg-title unselectable">
       {{ "<" }}BLOG{{ "/>" }}
     </h1>
     <div class="container">
-      <TransitionGroup name="list" tag="ul" class="flex flex-wrap gap-8">
+      <TransitionGroup name="list" tag="ul" class="flex flex-wrap gap-8 w-full">
         <BlogCard
           v-for="article in articles"
           :key="article.title"
@@ -21,7 +21,7 @@
       <NuxtLink v-if="isHomePage" to="/blog" class="button"
         >{{ "<See More />" }}</NuxtLink
       >
-      <img
+      <!-- <img
         class="absolute bottom-0 right-0 z-1"
         :src="
           useAsset(`images/blob-decoration-${$colorMode.preference}-1` + '.png')
@@ -32,7 +32,7 @@
         :src="
           useAsset(`images/blob-decoration-${$colorMode.preference}-2` + '.png')
         "
-      />
+      /> -->
     </div>
   </section>
 </template>
@@ -56,17 +56,10 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped lang="scss">
-.container {
-  @apply flex flex-row relative gap-32 items-center justify-around max-w-[1200px] z-10;
-}
-
+<style scoped lang="postcss">
 .blog-section {
-  @apply relative flex flex-col justify-center items-center py-[11rem]
+  @apply relative w-full flex flex-col justify-center items-center pt-4 pb-32
      z-10;
-  &.bg {
-    @apply bg-light-end dark:bg-dark-end;
-  }
   .bg-title {
     @apply absolute top-0 left-0 max-w-full
       lg:text-[18rem] md:text-[9rem] text-[6rem] 

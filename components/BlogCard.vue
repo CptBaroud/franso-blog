@@ -4,17 +4,13 @@
     :class="[disposition, $colorMode.preference]"
     :to="path"
   >
-    <img
-      v-if="props.cover"
-      class="blogCard-cover"
-      :class="disposition"
-      :src="props.cover || useAsset('images/blog-cover-default.png')"
-    />
     <div class="blogCard-content">
-      <h2 class="blogCard-title">
-        {{ title }}
-      </h2>
-      <p class="blogCard-description">{{ description }}</p>
+      <span>
+        <h2 class="blogCard-title">
+          {{ title }}
+        </h2>
+        <p class="blogCard-description">{{ description }}</p>
+      </span>
       <ul class="inline-flex gap-2">
         <Label
           v-for="(tags, i) in props.tags"
@@ -41,17 +37,20 @@ interface IBlogCard {
 const props = defineProps<IBlogCard>();
 </script>
 
-<style scoped lang="scss">
+<style lang="postcss">
 .blogCard {
-  @apply flex gap-4 rounded-2xl shadow-md p-4 z-10
-    bg-light/50 dark:bg-dark/50 backdrop-blur font-Inconsolata;
-  backdrop-filter: blur(9px);
-  flex: 0 0 46%;
-  @media (max-width: 768px) {
-    flex: 0 0 100%;
-  }
+  @apply flex gap-4 relative w-full max-w-full lg:max-w-[48%] justify-between rounded-2xl shadow-md p-4 z-20
+    bg-light/75 dark:bg-dark/75 font-Inter border border-light/95 dark:border-dark/95;
+
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
+
+  &::before {
+    @apply w-[128px] h-[64px] bg-red-500 rotate-12;
+  }
 
   &:hover {
     @apply -translate-y-1 cursor-pointer;
@@ -68,38 +67,16 @@ const props = defineProps<IBlogCard>();
 }
 
 .blogCard-title {
-  @apply text-4xl font-bold text-gray-900 dark:text-white;
-  line-height: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* number of lines to show */
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
+  @apply text-2xl xl:text-4xl font-bold text-gray-900 dark:text-white pt-0 truncate;
+  line-height: 150%;
 }
 
-.blogCard-cover {
-  @apply rounded-2xl h-auto;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  object-fit: cover;
-  &.landscape {
-    flex-basis: 45%;
-    max-width: 45%;
-    max-height: 231px;
-  }
-
-  &.portrait {
-    flex-basis: 100%;
-    max-width: 100%;
-    max-height: 55%;
-  }
-}
 .blogCard-content {
-  @apply flex flex-col gap-2;
+  @apply flex w-full flex-col justify-between gap-2;
 }
 
 .blogCard-description {
-  @apply text-base text-gray-900 dark:text-white;
+  @apply text-base text-gray-900/75 dark:text-white/75 pb-0;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

@@ -44,7 +44,7 @@ Le code malveillant est ensuite **exécuté par le navigateur des utilisateurs q
 | *Fonctionnement d'une XSS basique* |
 <br>
 
-Le XSS fonctionne sur le principe de l'injection : **un attaquant fournit une entrée non fiable à un programme, qui l'exécute ensuite, induisant une action malveillante**.
+La XSS fonctionne sur le principe de l'injection : **un attaquant fournit une entrée non fiable à un programme, qui l'exécute ensuite, induisant une action malveillante**.
 Les injections sont un vecteur d'attaque courant en cybersécurité, toujours dans le top 3 du top 10 de l'OWASP (un document de sensibilisation standard pour les développeurs et la sécurité des applications Web).
 
 Il existe **3 types de XSS** :
@@ -174,7 +174,7 @@ Contrairement aux XSS stockées et réfléchies, la XSS basée sur le DOM ne né
 
 ## Impacts
 
-**À quoi peut servir le XSS ?**
+**À quoi peut servir les XSS ?**
 
 * **Exécuter un code arbitraire** sur le navigateur d'une victime peut permettre à un attaquant de voler des cookies (lorsque les cookies ne sont pas sécurisés, les attaquants peuvent les voler et les utiliser pour s'authentifier en tant que victimes sans avoir besoin de connaître leur mot de passe).
 
@@ -183,7 +183,7 @@ Contrairement aux XSS stockées et réfléchies, la XSS basée sur le DOM ne né
 * **Phishing** (les attaquants peuvent modifier l'apparence et le comportement du site, incitant les victimes à envoyer des informations sensibles aux serveurs des attaquants).
   
 ::hint{type="info"}
-L'impact réel d'une attaque XSS dépend de la nature de l'application, de ses fonctionnalités et de ses données, ainsi que du statut de l'utilisateur compromis.
+L'impact réel d'une XSS dépend de la nature de l'application, de ses fonctionnalités et de ses données, ainsi que du statut de l'utilisateur compromis.
 * Dans une application où **tous les utilisateurs sont anonymes et où toutes les informations sont publiques**, l'impact sera souvent **minime**.
 * Dans une application contenant **des données sensibles, comme des transactions bancaires, des e-mails ou des dossiers médicaux**, l'impact sera généralement **grave**.
 * Si l'utilisateur compromis a des privilèges élevés dans l'application, l'impact sera généralement **critique**, permettant à l'attaquant de prendre **le contrôle total de l'application vulnérable** et de compromettre tous les utilisateurs et leurs données.

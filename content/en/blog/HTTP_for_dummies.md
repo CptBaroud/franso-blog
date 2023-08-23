@@ -1,6 +1,6 @@
 ---
 tags: ['HTTP', 'Vulgarization', 'Web', 'Basics']
-description: "Let me vulgarize one of the most famous protocol, HTTP"
+description: "HTTP, we often hear this acronym; it enables the web to function, but how does it really work? Let's find out!"
 translation: { "fr": "http_pour_les_nuls", "en": "http_for_dummies"}
 ---
 

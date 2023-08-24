@@ -67,24 +67,29 @@ Most web sites are working with a database on a third-party server called **BACK
 * microservices 
 * service-oriented architecture (SOA).
 
-Just remember that in all these architectures, the website sends requests to the database in order to exchange information, for example, to retrieve all the comments on a news page.
+Just remember that in all these architectures, the website **sends requests to the database in order to exchange information**, for example, to retrieve all the comments on a news page.
 
-Now that the groundwork has been laid, let's get down to the nitty-gritty: SQL injection!
+Now that the groundwork has been laid, let's get down to the nitty-gritty: **SQL injection** !
 
 ## What is a SQL Injection ?
 
 ::hint{type="info"}
-SQL injection (SQLi) is a Web security vulnerability that allows an attacker to interfere with an application's queries to its database. 
+**SQL injection (SQLi) is a Web security vulnerability that allows an attacker to interfere with an application's queries to its database.** 
 ::
 
 This usually allows an attacker to display data that he would not normally be able to retrieve. This can include data belonging to other users, or any other data that the application itself can access. 
 
-In many cases, an attacker can modify or delete this data, causing persistent changes to the application's content or behavior.
+In many cases, **an attacker can modify or delete this data**, causing persistent changes to the application's content or behavior.
 
 How does this work, you may ask? Here's a little lab to help you understand !
 
 <details>
 <summary class="summary">Basic SQLi Auth bypass</summary>
+
+**Click to see the basic SQLi Auth bypass (with english subtitle)**.
+
+[![Minia_DOM_XSS](../../images/sqli/minia_sqli.png)](https://youtu.be/KWOs0Waq2TM?si=Lt-vOesJ57Eo6HEk&t=269)
+
 </details>
 
 ## Union Based SQL Injection 

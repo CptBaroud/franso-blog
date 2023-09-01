@@ -176,9 +176,7 @@ SQL injections based on conditional errors are easier to understand. Let's take 
 
 Even though the server response doesn't return the results of the query, some data is sent through a 'Welcome' message on the page if the user is recognized.
 
-
-
-This behavior is sufficient to exploit the Blind SQL injection vulnerability and retrieve information by triggering different responses conditionally, based on an injected condition.
+This behavior is **sufficient to exploit the Blind SQL injection vulnerability** and retrieve information by **triggering different responses conditionally**, based on an injected condition.
 
 For example, with these payloads, if the injection is successful, the first one will return the 'Welcome' message while the second one won't:
 | ![example_payload_conditional_sqli](../../images/sqli/example_condi.png) | 
@@ -200,4 +198,80 @@ In the same way as time-based attacks, you can brute force tables or passwords b
 |:--:| 
 | *Conditional SQLi brute force* |
 
+<br>
+
+### Out of band blind SQL Injection
+
+If you're not able to retrieve results **directly from the server**, one approach is to send the results to a server you control. This is the objective of **Out-of-Band Blind SQL Injection.**
+
+In this scenario, an attacker exfiltrates datas from **the `users` table where the username is `administrator`** to a domain name controlled the attacker.
+
+| ![out_of_band_sqli](../../images/sqli/outofbandsqli.png) | 
+|:--:| 
+| *Possible payload for conditional SQLi (brute force)* |
+
+| ![OAST_SQLi](../../images/sqli/OAST_SQLi.gif) | 
+|:--:| 
+| *Out of bande SQL Injection example* |
+
+## Second-order SQL Injection
+
+For now, what we've seen were `first-order SQL injections`. In this case, the application **takes user input from an HTTP request and, during the processing of that request, incorporates the input into an insecurely constructed SQL query, and we obtain the result in the HTTP response.**
+
+Second-order SQL injection is a bit different. In this scenario, the application takes user input from an HTTP request and stores it for future use. This is typically done by **placing the input into a database, but no vulnerability appears at the point of data storage. Later, when processing a different HTTP request, the application retrieves the stored data and incorporates it into an insecurely constructed SQL query**.
+
+| ![second-order-sql-injection](../../images/sqli/second-order-sql-injection.svg) | 
+|:--:| 
+| *Second order SQL Injection (portswigger.net)* |
+
+
+## Impacts
+
+Now that we've covered the various types of **SQL injection**, let's move on to the **impacts**, even though you likely already have an idea based on the examples:
+
+1. **Unauthorized Data Access**: Attackers can use SQL injections to bypass authentication and authorization mechanisms, allowing them to access sensitive data they shouldn't have access to. This can include confidential user information, financial data, passwords, and more.
+
+2. **Data Manipulation**: SQL injections enable attackers to modify, add, or delete data in the database. This can lead to data alteration or deletion, compromising the integrity of stored information and causing functional issues for the application.
+
+3. **Execution of System Commands**: In some cases, attackers can exploit SQL injections to execute system commands on the server hosting the web application. This can allow them to access other server resources, compromise the operating system's security, or perform malicious actions.
+
+4. **Performance Degradation**: SQL injections can overload server resources and degrade the performance of the web application. Malicious SQL queries can be complex and resource-intensive, resulting in longer response times, server downtime, or significant application slowdowns.
+
+5. **Damaged Reputation and Trust**: If a web application falls victim to a SQL injection attack and sensitive user data is compromised, it can negatively impact the reputation of the company or organization. Users may lose trust in the application and the company's ability to protect their personal information.
+
+## Remediation
+
+1. **Use prepared statements or parameterized queries provided by your programming language and framework**. This separates the SQL code from user input data, significantly reducing the risk of SQL injections.
+
+| ![Prepared_statementn](../../images/sqli/Prepared_statement.png) | 
+|:--:| 
+| *Prepared statement example* |
+
+2. **Ensure thorough validation and filtering of all user inputs**. Utilize appropriate validation techniques such as checking expected data types, limiting special characters, filtering potentially harmful inputs, etc.
+
+| ![filters](../../images/sqli/filters.png) | 
+|:--:| 
+| *Code to filter inputs* |
+
+3. **Principle of Least Privilege**: Only grant the necessary privileges to database access accounts used by the application. Avoid using accounts with high privileges, such as administrative privileges, for database access.
+
+4. **Defense in Depth Principle**: In addition to securing web applications, ensure the underlying infrastructure, including database servers, is also secure. Apply security updates, configure firewalls, limit external connections, and use encryption mechanisms for sensitive data.
+
+| ![Defense_in_Depth](../../images/sqli/prof.png) | 
+|:--:| 
+| *Defense in depth illustration* |
+
+5. **Regular Security Testing**: Conduct regular security testing, including SQL injection tests, to identify vulnerabilities and address them promptly. Utilize automated security analysis tools and perform code audits to detect potential flaws.
+
+6. **Developer Awareness and Training**: Ensure that developers are aware of the risks associated with SQL injections and train them in best practices for securing web applications. Promote a culture of security in software development.
+
+## Resources
+
+::embedUrl{url="https://portswigger.net/web-security/sql-injection"}
+Portswigger
+::
+
+::embedUrl{url="https://fr.wikipedia.org/wiki/Injection_SQL"}
+Wikipedia
+::
 

@@ -10,29 +10,30 @@ I imagine that you've already heard about the many **data leaks carried out by m
 
 ## Introduction
 
-Today, we're tackling a relatively well-known vulnerability, perhaps one of the best-known on the Web: **SQL injection**. So before we talk about SQL injection, we need to understand the SQL language and web architectures. Let's go
+Today, we're tackling a relatively well-known vulnerability, perhaps one of the best-known on the Web: **SQL injection**. But before we talk about SQL injection, we need to understand the SQL language and web architectures. Let's go
 
 ### What's SQL 
 
 ::hint{type="info"}
 **SQL stands for structured query language, and is a programming language for interacting with relational databases. It enables data to be stored, manipulated and retrieved in a structured way.**
 
-Relational databases comprise a set of tables, which are used to store data.
+**Relational databases comprise a set of tables, which are used to store data.**
 ::
 
-For example, for my blog website, I have my database which includes a "blog" table storing posts and a "comments" table, storing - I think you've guessed it - comments.
+For example, for my blog website, I have my database which includes a `blog` table storing posts and a `comments` table, storing - I think you've guessed it - comments.
 
 | ![blog_sql_table_ex](../../images/SQLi/blog_sql_table_ex.gif) |
 | :-----------------------------------------------------------: |
 |               *SQL Database and table example*                |
  <br>
 
-Storing data is cool, but consulting it is even better, so there's the **SELECT** query in SQL to retrieve information. For example, `SELECT * FROM users` (so here, we want everything from the users table).
+Storing data is cool, but consulting it is even better, so there's the **SELECT** query in SQL to retrieve information. For example, `SELECT * FROM users` (so here, we want everything from the `users` table).
 
 | ![select_all](../../images/SQLi/basic_select.png) | ![select_all_result](../../images/SQLi/selectallresult.png) |
 | :----------------------------------------------: | :---------------------------------------------------------: |
 |               *Select all request*               |                  *Result from select all*                   |
 
+<br>
 To refine SELECT, you can add a clause, logical operators and aggregation functions : 
 
 * Firstly, the `WHERE` clause in a select, which simply allows you to add specific conditions.
@@ -40,12 +41,14 @@ To refine SELECT, you can add a clause, logical operators and aggregation functi
 | ![select_where_age](../../images/SQLi/whererequest.png) | ![result_select_where_age](../../images/SQLi/whereresult.png) |
 | :-----------------------------------------------------: | :-----------------------------------------------------------: |
 |                   *Select with where*                   |                  *Result from select where*                   |
+<br>
 
 * Logical operators are used to combine conditions.
 
 | ![select_multiple_conditions](../../images/SQLi/requestmultipleconditions.png) | ![result_select_multiple_conditions](../../images/SQLi/multipleconditions.png) |
 | :----------------------------------------------------------------------------: | :----------------------------------------------------------------------------: |
 |                        *Select with mutiple conditions*                        |                  *Result from select with mutiple conditions*                  |
+<br>
 
 * Aggregation functions, such as `SUM`, `AVG` or `COUNT`, simply calculate values from table data.
 
@@ -54,7 +57,8 @@ To refine SELECT, you can add a clause, logical operators and aggregation functi
 | ![union_request](../../images/SQLi/union_sql.png) | ![union_result](../../images/SQLi/UNION_RESULT.png) |
 | :-----------------------------------------------: | :-------------------------------------------------: |
 |              *SQL query with union*               |            *Result from union SQL query*            |
-  
+<br>
+
 * Finally, you should know that there are other instructions besides `SELECT`, such as `INSERT`, which inserts new data into a table, `UPDATE`, which updates existing data, and `DELETE`, which deletes data.
 
 ### Web architectures
@@ -104,15 +108,16 @@ To make a UNION query work, **two essential conditions must be met**:
 
 1. **The individual queries must return the same number of columns.**
 
-| ![SQL_UNION_OKAY_1](../../images/SQLi/union_okay_1.png) | ![SQL_UNION_NOTOKAY_1](../../images/SQLi/en_union_not_okay.png) |
+| ![SQL_UNION_OKAY_1](../../images/SQLi/union_okay_1.png) | ![SQL_UNION_NOTOKAY_1](../../images/SQLi/union_not_okay.png) |
 | :-----------------------------------------------: | :-------------------------------------------------: |
 |              *SQL union query okay*               |            *SQL union query not okay (because different number of columns)*            |
 
 2. **The data types of each column must be compatible across the individual queries, meaning no mixing of integers with strings.**
 
-| ![SQL_UNION_OKAY_2](../../images/SQLi/SQL_UNION_OKAY_1.png) | ![SQL_UNION_NOTOKAY_2](../../images/SQLi/en_union_not_okay_2.png) |
+| ![SQL_UNION_OKAY_2](../../images/SQLi/union_okay_2.png) | ![SQL_UNION_NOTOKAY_2](../../images/SQLi/sql_union_not_okay_2.png) |
 | :-----------------------------------------------: | :-------------------------------------------------: |
-|               *SQL union query okay*              |             *SQL union query not okay (because different data types between Age and Nom)*            |
+|               *SQL union query okay*              |             *SQL union query not okay (because different data types between Age and Name)*            |
+<br>
 
 In order to successfully conduct a Union-Based SQL injection (SQLi), you need to determine:
 
@@ -174,11 +179,11 @@ SQL injections based on conditional errors are easier to understand. Let's take 
 |:--:| 
 | *SQL select on cookie* |
 
-Even though the server response doesn't return the results of the query, some data is sent through a 'Welcome' message on the page if the user is recognized.
+Even though the server response doesn't return the results of the query, some data is sent through a `Welcome` message on the page if the user is recognized.
 
 This behavior is **sufficient to exploit the Blind SQL injection vulnerability** and retrieve information by **triggering different responses conditionally**, based on an injected condition.
 
-For example, with these payloads, if the injection is successful, the first one will return the 'Welcome' message while the second one won't:
+For example, with these payloads, if the injection is successful, the first one will return the `Welcome` message while the second one won't:
 | ![example_payload_conditional_sqli](../../images/sqli/example_condi.png) | 
 |:--:| 
 | *Possible payload for conditional SQLi* |
@@ -187,8 +192,9 @@ For example, with these payloads, if the injection is successful, the first one 
 | ![conditional_sqli](../../images/sqli/EN_conditional.gif) | 
 |:--:| 
 | *Conditional SQLi identification* |
+<br>
 
-In the same way as time-based attacks, you can brute force tables or passwords based on the message dependent on the SQL query :
+In the same way as time-based attacks, you can brute force tables or passwords based on **the message dependent on the SQL query** :
 
 | ![select_on_cookie_brutforce](../../images/sqli/guessing_payload_condi.png) | 
 |:--:| 
@@ -200,7 +206,7 @@ In the same way as time-based attacks, you can brute force tables or passwords b
 
 <br>
 
-### Out of band blind SQL Injection
+### Out-of-band (OAST) blind SQL Injection
 
 If you're not able to retrieve results **directly from the server**, one approach is to send the results to a server you control. This is the objective of **Out-of-Band Blind SQL Injection.**
 
@@ -208,11 +214,11 @@ In this scenario, an attacker exfiltrates datas from **the `users` table where t
 
 | ![out_of_band_sqli](../../images/sqli/outofbandsqli.png) | 
 |:--:| 
-| *Possible payload for conditional SQLi (brute force)* |
+| *Possible payload for OAST SQLi* |
 
 | ![OAST_SQLi](../../images/sqli/OAST_SQLi.gif) | 
 |:--:| 
-| *Out of bande SQL Injection example* |
+| *Out of band SQL Injection example* |
 
 ## Second-order SQL Injection
 
@@ -256,10 +262,6 @@ Now that we've covered the various types of **SQL injection**, let's move on to 
 3. **Principle of Least Privilege**: Only grant the necessary privileges to database access accounts used by the application. Avoid using accounts with high privileges, such as administrative privileges, for database access.
 
 4. **Defense in Depth Principle**: In addition to securing web applications, ensure the underlying infrastructure, including database servers, is also secure. Apply security updates, configure firewalls, limit external connections, and use encryption mechanisms for sensitive data.
-
-| ![Defense_in_Depth](../../images/sqli/prof.png) | 
-|:--:| 
-| *Defense in depth illustration* |
 
 5. **Regular Security Testing**: Conduct regular security testing, including SQL injection tests, to identify vulnerabilities and address them promptly. Utilize automated security analysis tools and perform code audits to detect potential flaws.
 

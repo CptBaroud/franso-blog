@@ -24,15 +24,15 @@ Avant de parler du request smuggling, petit retour en arrière sur ses versions 
 
 Il faut savoir qu’avant, lors sa version **0.9**, le seul moyen d'envoyer 3 requêtes était d'ouvrir **3 fois une connexion TCP/IP** avec le serveur et à chaque fois demander le document ciblé, c’était plutôt contraignant et gourmand en ressource comme vous pouvez l’imaginer 
 
-| ![HTTP_0-9_FR.png](../../images/RS/HTTP_0-9_FR.png) | 
-|:--:| 
-| *Fonctionnement de HTTP en version 0.9* |
+| ![HTTP_0-9_FR.png](../../images/RS/HTTP_0-9_FR.png) |
+| :-------------------------------------------------: |
+|       *Fonctionnement de HTTP en version 0.9*       |
  <br>
 
 HTTP était et reste à ce jour un protocole assez simple, surtout dans sa **version 0.9**. Retenez l'utilisation de `\r\n` pour représenter les caractères CR et LF, les marqueurs de fin de ligne. Cela aura son importance plus tard.
 
-| ![crlf_animation](../../images/RS/crlf_animation.gif) | 
-|:--:| 
+|          ![crlf_animation](../../images/RS/crlf_animation.gif)          |
+| :---------------------------------------------------------------------: |
 | *Explication de ce qu'est \r\n (permettant de marquer la fin de ligne)* |
  <br>
 
@@ -40,8 +40,8 @@ HTTP était et reste à ce jour un protocole assez simple, surtout dans sa **ver
 
 Arrive la version HTTP\1.0 qui apporte une chose **très importante** vu en dans la vidéo & blog post HTTP, les **en-têtes ou headers**. Voici la première requête mais en HTTP\1.0 :
 
-| ![HTTP_1-.png](../../images/RS/HTTP_1-0.png) | 
-|:--:| 
+|       ![HTTP_1-.png](../../images/RS/HTTP_1-0.png)        |
+| :-------------------------------------------------------: |
 | *Fonctionnement de HTTP en version 1.0 avec \r\n affiché* |
  <br>
 
@@ -64,9 +64,9 @@ Le mode **Connection : Keep Alive** est un header qui indique au serveur qu’il
 
 Comme vous vous en doutez, cela change beaucoup par rapport à la version 0.9 où chaque requête nécessitait l'ouverture d'une connexion TCP/IP.
 
-| ![keep-alive.jpg](../../images/RS/keep-alive.jpg) | 
-|:--:| 
-| *Fonctionnement du header keep-alive ( source: imperva)* |
+|    ![keep-alive.jpg](../../images/RS/keep-alive.jpg)    |
+| :-----------------------------------------------------: |
+| *Fonctionnement du header keep-alive (source: imperva)* |
  <br>
 
 Il est aussi possible de spécifier **Connection: Close** qui signifiera au serveur de couper la connexion après le premier échange requête/réponse.
@@ -76,16 +76,16 @@ Néanmoins, retenez que le mode **Keep alive** est **très utilisé** car souven
 
 L’autre grosse nouveauté de cette version HTTP est le pipelining. Ce concept consiste à combiner plusieurs requêtes HTTP dans une seule connexion TCP sans attendre les réponses correspondant à chaque requête. Comme vous l'aurez surement compris, le fonctionnement du pipelining repose grandement sur le header **Keep alive** vu juste au-dessus.
 
-| ![no_pipelining](../../images/RS/no_pipelining.png) | 
-|:--:| 
-| *Fonctionnement sans pipelining* |
+| ![no_pipelining](../../images/RS/no_pipe_fr.png) |
+| :----------------------------------------------: |
+|         *Fonctionnement sans pipelining*         |
  <br>
 
 Cela permet d'optimiser grandement la vitesse `requête/réponse` car la personne B n'aura pas à attendre la réponse de la personne A pour récupérer sa réponse !
 
-| ![pipelining](../../images/RS/pipelining.png) | 
-|:--:| 
-| *Fonctionnement avec pipelining* |
+| ![pipelining_fr](../../images/RS/pipelining_fr.png) |
+| :-------------------------------------------------: |
+|          *Fonctionnement avec pipelining*           |
  <br>
 
 #### Chunks
@@ -96,9 +96,9 @@ Tandis que Content-length annonce la taille complète finale du message (comme v
 
 Le transfert Chunk, quant à lui, permet de transmettre un message **par plusieurs petits paquets (chunks)**, chacun annonçant sa taille grâce à un dernier chunk spécial avec une taille vide pour clôturer la fin du message. On remarque à nouveau les `\r\n` AKA `CRLF`.
 
-| ![chunked-and-compressed-message1](../../images/RS/chunked-and-compressed-message1.png) | 
-|:--:| 
-| *Représentation des chunks dans une requête HTTP* |
+| ![chunked-and-compressed-message1](../../images/RS/chunked-and-compressed-message1.png) |
+| :-------------------------------------------------------------------------------------: |
+|                    *Représentation des chunks dans une requête HTTP*                    |
  <br>
 
 
@@ -136,15 +136,15 @@ Le **request smuggling** consiste à placer l'en-tête Content-Length et l'en-t�
 
 Prenons cette requête HTTP : 
 
-| ![normal_post](../../images/RS/normal_post.png) | 
-|:--:| 
-| *Requête HTTP en POST* |
+| ![normal_post](../../images/RS/normal_post.png) |
+| :---------------------------------------------: |
+|             *Requête HTTP en POST*              |
  <br>
 
 Comme vous pouvez le voir, même si les deux serveurs utilisent un header différent pour déterminer la taille de la requête, tout se passe bien.
 
-| ![FR_animation_RS](../../images/RS/FR_animation_RS.gif) | 
-|:--:| 
+|    ![FR_animation_RS](../../images/RS/FR_animation_RS.gif)    |
+| :-----------------------------------------------------------: |
 | *Comportement de deux serveurs concernant cette requête HTTP* |
  <br>
 
@@ -154,8 +154,8 @@ Ajoutons l'en-tête **Transfer-Encoding** utilisé pour spécifier que le corps 
 
 *Cela signifie que le corps du message contient un ou plusieurs morceaux de données. Chaque bloc se compose de la taille du bloc en octets (exprimée en hexadécimal), suivie d'une nouvelle ligne, puis du contenu du bloc. Le message se termine par un bloc de taille zéro.*
 
-| ![smuggle_post](../../images/RS/smuggle_post.png) | 
-|:--:| 
+| ![smuggle_post](../../images/RS/smuggle_post.png)  |
+| :------------------------------------------------: |
 | *Requête HTTP pour effectuer un request smuggling* |
  <br>
 
@@ -167,9 +167,9 @@ Le backend traite **l'en-tête Transfer-Encoding** et considère donc le corps d
 
 Il traite le premier morceau, qui est déclaré de longueur nulle, et est donc considéré comme mettant fin à la demande (parce que `\r\n0\r\n\r\n`). Les octets suivants, **SMUGGLED**, **ne sont pas traités et le serveur backend les considère comme le début de la requête suivante** dans la séquence. Donc, **SMUGGLED est traité comme une nouvelle requête**, il serait possible d’intégrer un payload comme “GET /admin” pour bypass le frontend et accéder au panel d’administration.
 
-| ![FR_animation_RS_2](../../images/RS/FR_animation_RS_2.gif) | 
-|:--:| 
-| *Fonctionnement du request smuggling* |
+| ![FR_animation_RS_2](../../images/RS/FR_animation_RS_2.gif) |
+| :---------------------------------------------------------: |
+|            *Fonctionnement du request smuggling*            |
  <br>
 
 Il existe plusieurs sorte de request smuggling en fonction du comportement des deux serveurs :
@@ -188,7 +188,6 @@ Maintenant que le request smuggling est plus clair pour vous, passons à la dém
 [![Minia_DOM_XSS](../../images/RS/minia_RS.png)](https://youtu.be/7D-DapSZYZ4?si=q5iQivoC_ankxnuo&t=546)
 
 </details>
-
 
 ## Impacts
  

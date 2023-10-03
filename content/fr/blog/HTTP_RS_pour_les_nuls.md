@@ -8,7 +8,7 @@ translation: { "fr": "HTTP_RS_pour_les_nuls", "en": "HTTP_RS_pour_for_dummies"}
 
 ## Introduction
 
-Aujourd’hui, nous allons voir une vulnérabilité peu connu, le **HTTP request smuggling** ou **contrebande de HTTP** en français
+Aujourd’hui, nous allons voir une vulnérabilité peu connu, le **HTTP request smuggling** ou **contrebande de HTTP** en français (trop stylé ouai).
 
 Derrière ce terme un peu barbare qu’est le **HTTP Request Smuggling** se cache une vulnérabilité très intéressante.
 
@@ -16,13 +16,13 @@ Derrière ce terme un peu barbare qu’est le **HTTP Request Smuggling** se cach
 **DISCLAIMER : Pour ce blog post, je pars du principe que vous êtes familier techniquement avec le protocole HTTP, si ce n’est pas le cas, j’ai sorti [une vidéo](https://youtu.be/lXFTQJTOhKg?si=W8XKGvU7bO0wm0cR) ainsi qu'un [blog post sur le sujet](HTTP_pour_les_nuls.md).**
 ::
 
-Avant de parler du request smuggling, petit retour en arrière sur ses versions pour bien comprendre l’origine de la vulnérabilité.
+Avant de parler du request smuggling, petit retour en arrière sur HTTP et ses versions pour bien comprendre l’origine de la vulnérabilité.
 
 ## Ancienne version de HTTP
 
 ### Version 0.9
 
-Il faut savoir qu’avant, lors sa version **0.9**, le seul moyen d'envoyer 3 requêtes était d'ouvrir **3 fois une connexion TCP/IP** avec le serveur et à chaque fois demander le document ciblé, c’était plutôt contraignant et gourmand en ressource comme vous pouvez l’imaginer 
+Il faut savoir qu’avant, lors sa version **0.9**, le seul moyen d'envoyer **3 requêtes** était d'ouvrir **3 fois une connexion TCP/IP** avec le serveur et à chaque fois demander le document ciblé, c’était plutôt contraignant et gourmand en ressource comme vous pouvez l’imaginer 
 
 | ![HTTP_0-9_FR.png](../../images/RS/HTTP_0-9_FR.png) |
 | :-------------------------------------------------: |
@@ -38,7 +38,7 @@ HTTP était et reste à ce jour un protocole assez simple, surtout dans sa **ver
 
 ### Version 1.0
 
-Arrive la version HTTP\1.0 qui apporte une chose **très importante** vu en dans la vidéo & blog post HTTP, les **en-têtes ou headers**. Voici la première requête mais en HTTP\1.0 :
+Arrive la version HTTP\1.0 qui apporte une chose **très importante** vu dans la vidéo & blog post HTTP, les **en-têtes ou headers**. Voici la requête ci-dessus mais en HTTP\1.0 :
 
 |       ![HTTP_1-.png](../../images/RS/HTTP_1-0.png)        |
 | :-------------------------------------------------------: |
@@ -48,7 +48,7 @@ Arrive la version HTTP\1.0 qui apporte une chose **très importante** vu en dans
 Il est important de remarquer le header **Content-Length**, ce dernier correspond au **nombre de caractère ascii7 en démarrant** à `<html` en incluant les caractères de fin de ligne soit **138 octets**. 
 
 ::hint{type="info"}
-Retenez pour bien comprendre le request smuggling que **la taille c'est super important** (on reste dans le contexte de HTTP bien sûr).
+Retenez que, pour bien comprendre le request smuggling, **la taille c'est super important** (on reste dans le contexte de HTTP bien sûr).
 ::
  
 ### Version 1.1
@@ -60,7 +60,7 @@ Arrive la version HTTP/1.1 qui ajoute trois choses importantes (surtout pour com
 
 #### Keep-Alive
 
-Le mode **Connection : Keep Alive** est un header qui indique au serveur qu’il peut réaliser plusieurs requêtes/réponses dans la même connexion TCP/IP.
+Le mode **Connection : Keep Alive** est un header qui indique au serveur qu’il peut réaliser **plusieurs requêtes/réponses dans la même connexion TCP/IP.**
 
 Comme vous vous en doutez, cela change beaucoup par rapport à la version 0.9 où chaque requête nécessitait l'ouverture d'une connexion TCP/IP.
 
@@ -126,7 +126,7 @@ Cela semble un peu flou pour le moment, nous allons voir comment cela est possib
 
 ### Comment ça fonctionne ?
 
-La plupart des vulnérabilités liées aux requêtes smuggling sont dues au fait que la spécification HTTP prévoit **deux façons différentes de spécifier** où se termine une requête : **l'en-tête Content-Length et l'en-tête Transfer-Encoding.**
+La plupart des vulnérabilités liées au request smuggling sont dues au fait que la spécification HTTP prévoit **deux façons différentes de spécifier** où se termine une requête : **l'en-tête Content-Length et l'en-tête Transfer-Encoding.**
 
 Étant donné cette spécificité, il est possible qu'un même message utilise les deux méthodes à la fois, de sorte qu'elles entrent en conflit l'une avec l'autre.
 
@@ -148,9 +148,9 @@ Comme vous pouvez le voir, même si les deux serveurs utilisent un header diffé
 | *Comportement de deux serveurs concernant cette requête HTTP* |
  <br>
 
-**Mais que se passe-t-il si on ajoute un deuxième header indiquant la taille à la fin de la requête ??**
+**Mais que se passe-t-il si un attaquant ajoute un deuxième header indiquant la taille à la fin de la requête ??**
 
-Ajoutons l'en-tête **Transfer-Encoding** utilisé pour spécifier que le corps du message utilise un encodage par morceaux.
+Ce dernier va ajouter l'en-tête **Transfer-Encoding** utilisé pour spécifier que le corps du message utilise un encodage par morceaux.
 
 *Cela signifie que le corps du message contient un ou plusieurs morceaux de données. Chaque bloc se compose de la taille du bloc en octets (exprimée en hexadécimal), suivie d'une nouvelle ligne, puis du contenu du bloc. Le message se termine par un bloc de taille zéro.*
 
@@ -165,14 +165,14 @@ Comme vous pouvez le voir dans le gif, le serveur frontal traite **l'en-tête Co
 
 Le backend traite **l'en-tête Transfer-Encoding** et considère donc le corps du message comme **utilisant ce header**. 
 
-Il traite le premier morceau, qui est déclaré de longueur nulle, et est donc considéré comme mettant fin à la demande (parce que `\r\n0\r\n\r\n`). Les octets suivants, **SMUGGLED**, **ne sont pas traités et le serveur backend les considère comme le début de la requête suivante** dans la séquence. Donc, **SMUGGLED est traité comme une nouvelle requête**, il serait possible d’intégrer un payload comme “GET /admin” pour bypass le frontend et accéder au panel d’administration.
+Il traite le premier morceau, qui est déclaré de longueur nulle, et est donc considéré comme mettant fin à la demande (parce que `\r\n0\r\n\r\n`). Les octets suivants, **SMUGGLED**, **ne sont pas traités et le serveur backend les considère comme le début de la requête suivante**. Donc, **SMUGGLED est traité comme une nouvelle requête**, il serait possible d’intégrer un payload comme “GET /admin” pour bypass le frontend et accéder au panel d’administration.
 
 | ![FR_animation_RS_2](../../images/RS/FR_animation_RS_2.gif) |
 | :---------------------------------------------------------: |
 |            *Fonctionnement du request smuggling*            |
  <br>
 
-Il existe plusieurs sorte de request smuggling en fonction du comportement des deux serveurs :
+Il existe plusieurs sortes de request smuggling en fonction du comportement des deux serveurs :
 
 * **CL.TE** : le serveur frontend utilise l'en-tête Content-Length et le serveur backend utilise l'en-tête Transfer-Encoding.
 * **TE.CL** : le serveur frontend utilise l'en-tête Transfer-Encoding et le serveur backend utilise l'en-tête Content-Length.

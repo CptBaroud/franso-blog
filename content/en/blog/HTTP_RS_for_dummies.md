@@ -16,7 +16,7 @@ Behind this somewhat intimidating term, **HTTP Request Smuggling**, lies a very 
 **DISCLAIMER: For this blog post, I assume that you are technically familiar with the HTTP protocol. If you are not, I have released [a video](https://youtu.be/lXFTQJTOhKg?si=W8XKGvU7bO0wm0cR) as well as a [blog post on the subject](HTTP_for_dummies.md).**
 ::
 
-Before delving into request smuggling, let's take a step back and review its versions to better understand the origin of the vulnerability.
+Before delving into request smuggling, let's take a step back and review its versions (talking about HTTP) to better understand the origin of the vulnerability.
 
 ## Previous Versions of HTTP
 
@@ -85,7 +85,7 @@ This greatly optimizes the speed of `request/response` because person B won't ha
 
 | ![pipelining_en](../../images/RS/pipelining_en.png) |
 | :-------------------------------------------------: |
-|            *Operation with pipelining**             |
+|             *Operation with pipelining*             |
  <br>
 
 #### Chunks
@@ -147,9 +147,9 @@ As you can see, even though the two servers use a different header to determine 
  |  *Behavior of Two Servers Regarding This HTTP Request*  |
  <br>
 
- **But what happens if we add a second header indicating the size at the end of the request?**
+ **But what happens if an attacker adds a second header indicating the size at the end of the request?**
 
-Let's add the **Transfer-Encoding** header, which is used to specify that the message body uses chunked encoding.
+He will add the **Transfer-Encoding** header, which is used to specify that the message body uses chunked encoding.
 
 *This means that the message body contains one or more chunks of data. Each chunk consists of the chunk size in bytes (in hexadecimal), followed by a newline, and then the content of the chunk. The message ends with a zero-sized chunk.*
 
